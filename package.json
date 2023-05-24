@@ -19,6 +19,6 @@
     ],
     "scripts": {
         "start": "parcel",
-        "build": "parcel build"
+        "compile": "parcel build"
     }
 }
