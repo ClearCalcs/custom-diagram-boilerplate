@@ -18,7 +18,7 @@
         "not dead"
     ],
     "scripts": {
-        "start": "parcel",
-        "compile": "parcel build"
+        "start": "parcel clearcalcs/**/index.html",
+        "compile": "parcel build clearcalcs/**/index.html"
     }
 }
