@@ -40,7 +40,6 @@ export default function start() {
                         SOURCE_ORIGIN,
                     );
                 } catch (callError) {
-                    console.log(callError);
                     window.parent.postMessage(
                         {
                             ...generateErrorResponse(callError),

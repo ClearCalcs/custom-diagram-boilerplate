@@ -15,6 +15,8 @@ export default async function timeoutFunctionCall(
     delay: number = 5000,
 ) {
     const promise = new Promise(async function (resolve, reject) {
+        // Setup a timeout timer, that will reject the promise if it
+        // runs.
         const timeout = setTimeout(function () {
             reject(
                 new ReferenceError(
@@ -24,9 +26,19 @@ export default async function timeoutFunctionCall(
                 ),
             );
         }, delay);
-        const response = await fn();
-        clearTimeout(timeout);
-        resolve(response);
+
+        try {
+            const response = await fn();
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        } finally {
+            // By the properties of async functions, this won't run until
+            // after above. But the timeout will fire in the event loop if
+            // reaches the delay, so we need to clear it here, so that we
+            // can resolve the response.
+            clearTimeout(timeout);
+        }
     });
 
     return promise;
