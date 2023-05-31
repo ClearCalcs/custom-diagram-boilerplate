@@ -1,9 +1,10 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
 import timeoutFunctionCall from "./utils/timeoutFunctionCall";
 
+import * as clearcalcsInterface from "./interface";
 import * as diagramInterface from "../src/interface";
 
-const IFRAME_INTERFACE = { ...diagramInterface };
+const IFRAME_INTERFACE = { ...diagramInterface, ...clearcalcsInterface };
 const SOURCE_ORIGIN = new URL(document.referrer).origin;
 
 export default function start() {
