@@ -1,7 +1,7 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
 import timeoutFunctionCall from "./utils/timeoutFunctionCall";
 
-import * as diagramInterface from "../src/main";
+import * as diagramInterface from "../src/interface";
 
 const IFRAME_INTERFACE = { ...diagramInterface };
 const SOURCE_ORIGIN = new URL(document.referrer).origin;
