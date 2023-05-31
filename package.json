@@ -19,6 +19,7 @@
     ],
     "scripts": {
         "start": "parcel clearcalcs/**/index.html",
+        "test": "parcel clearcalcs/**/*.html --port 4321",
         "compile": "parcel build clearcalcs/**/index.html"
     }
 }
