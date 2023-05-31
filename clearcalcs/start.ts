@@ -1,26 +1,10 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
+import timeoutFunctionCall from "./utils/timeoutFunctionCall";
 
 import * as diagramInterface from "../src/main";
 
 const IFRAME_INTERFACE = { ...diagramInterface };
 const SOURCE_ORIGIN = new URL(document.referrer).origin;
-
-async function timeoutMethodCall(method, data, delay = 5000) {
-    const promise = new Promise(async function (resolve, reject) {
-        const timeout = setTimeout(function () {
-            reject(
-                new ReferenceError(
-                    `${method} timed out after 5 seconds. Please check your method and try again.`,
-                ),
-            );
-        }, delay);
-        const response = await IFRAME_INTERFACE[method](data);
-        clearTimeout(timeout);
-        resolve(response);
-    });
-
-    return promise;
-}
 
 export default function start() {
     window.addEventListener(
@@ -45,7 +29,12 @@ export default function start() {
                 }
 
                 try {
-                    const response = await timeoutMethodCall(method, data);
+                    // Bind the data the method function, so we can pass into
+                    // timeoutFunctionCall agnostically, without it needing to
+                    // know about the function parameters.
+                    const response = await timeoutFunctionCall(
+                        IFRAME_INTERFACE[method].bind(null, data),
+                    );
                     window.parent.postMessage(
                         { callId, response },
                         SOURCE_ORIGIN,
