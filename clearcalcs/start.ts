@@ -1,5 +1,6 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
 import timeoutFunctionCall from "./utils/timeoutFunctionCall";
+import debounce from "./utils/debounce";
 
 import * as clearcalcsInterface from "./interface";
 import * as diagramInterface from "../src/interface";
@@ -64,6 +65,20 @@ export default function start() {
         },
         false,
     );
+
+    const resizeObserver = new ResizeObserver(
+        debounce(function ([entry]) {
+            const { width, height } = entry.contentRect;
+            window.parent.postMessage(
+                {
+                    response: { width, height },
+                    callId: "resize",
+                },
+                SOURCE_ORIGIN,
+            );
+        }, 100),
+    );
+    resizeObserver.observe(document.body);
 
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         IFRAME_INTERFACE.initialize();
