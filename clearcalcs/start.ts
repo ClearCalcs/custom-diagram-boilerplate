@@ -68,7 +68,7 @@ export default function start() {
 
     const resizeObserver = new ResizeObserver(
         debounce(function ([entry]) {
-            const { width, height } = entry.contentRect;
+            const { width, height } = document.body.getBoundingClientRect();
             window.parent.postMessage(
                 {
                     response: { width, height },
@@ -78,7 +78,7 @@ export default function start() {
             );
         }, 100),
     );
-    resizeObserver.observe(document.body);
+    resizeObserver.observe(document.body, { box: "border-box" });
 
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         IFRAME_INTERFACE.initialize();
