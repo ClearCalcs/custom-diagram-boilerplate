@@ -65,9 +65,6 @@ export default function start() {
         },
         false,
     );
-    window.addEventListener("load", function () {
-        window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
-    });
 
     const resizeObserver = new ResizeObserver(
         debounce(function ([entry]) {
@@ -86,4 +83,8 @@ export default function start() {
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         IFRAME_INTERFACE.initialize();
     }
+    window.addEventListener("load", function () {
+        window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
+    });
+
 }
