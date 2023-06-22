@@ -83,5 +83,5 @@ export default async function start() {
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         await IFRAME_INTERFACE.initialize();
     }
-    window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN); //dd
+    window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
 }
