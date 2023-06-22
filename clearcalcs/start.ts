@@ -8,7 +8,7 @@ import * as diagramInterface from "../src/interface";
 const IFRAME_INTERFACE = { ...diagramInterface, ...clearcalcsInterface };
 const SOURCE_ORIGIN = new URL(document.referrer).origin;
 
-export default function start() {
+export default async function start() {
     window.addEventListener(
         "message",
         async function (event) {
@@ -81,6 +81,7 @@ export default function start() {
     resizeObserver.observe(document.body, { box: "border-box" });
 
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
-        IFRAME_INTERFACE.initialize();
+        await IFRAME_INTERFACE.initialize();
     }
+    window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
 }
