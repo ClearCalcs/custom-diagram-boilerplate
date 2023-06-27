@@ -6,7 +6,10 @@ import * as clearcalcsInterface from "./interface";
 import * as diagramInterface from "../src/interface";
 
 const IFRAME_INTERFACE = { ...diagramInterface, ...clearcalcsInterface };
-const SOURCE_ORIGIN = new URL(document.referrer).origin;
+const SOURCE_ORIGIN =
+    window.parent === window
+        ? window.origin
+        : new URL(document.referrer).origin;
 
 export default async function start() {
     window.addEventListener(
