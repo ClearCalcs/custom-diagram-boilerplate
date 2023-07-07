@@ -19,6 +19,9 @@ export default async function start() {
             // the iframe.
             if (event.origin !== SOURCE_ORIGIN) return;
 
+            if (!event.data.callId || event.data.callId === "initialized")
+                return;
+
             try {
                 const { method, data, callId } = event.data;
                 if (typeof IFRAME_INTERFACE[method] !== "function") {
