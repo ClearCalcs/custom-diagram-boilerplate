@@ -84,7 +84,19 @@ export default async function start() {
     resizeObserver.observe(document.body, { box: "border-box" });
 
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
-        await IFRAME_INTERFACE.initialize();
+        try {
+            await timeoutFunctionCall(
+                IFRAME_INTERFACE.initialize.bind(null, {}),
+            );
+            window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
+        } catch (callError) {
+            window.parent.postMessage(
+                {
+                    ...generateErrorResponse(callError),
+                    callId: "initialized",
+                },
+                SOURCE_ORIGIN,
+            );
+        }
     }
-    window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
 }
