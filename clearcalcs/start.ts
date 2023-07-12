@@ -19,8 +19,17 @@ export default async function start() {
             // the iframe.
             if (event.origin !== SOURCE_ORIGIN) return;
 
-            if (!event.data.callId || event.data.callId === "initialized")
+            // When the diagram is the top level element e.g not in an iframe,
+            // avoid acting on certain events to prevent recursive loop
+            // due to listening and posting within the same window
+            if (
+                window.parent === window &&
+                (["initialized", "resize"].includes(event.data.callId) ||
+                    event.data.hasOwnProperty("response") ||
+                    event.data.error)
+            ) {
                 return;
+            }
 
             try {
                 const { method, data, callId } = event.data;
