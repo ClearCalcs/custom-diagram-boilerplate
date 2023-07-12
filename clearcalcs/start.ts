@@ -90,5 +90,13 @@ export default async function start() {
             );
             window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
         } catch (callError) {
+            window.parent.postMessage(
+                {
+                    ...generateErrorResponse(callError),
+                    callId: "initialized",
+                },
+                SOURCE_ORIGIN,
+            );
         }
+    }
 }
