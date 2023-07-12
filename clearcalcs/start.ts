@@ -88,6 +88,7 @@ export default async function start() {
             await timeoutFunctionCall(
                 IFRAME_INTERFACE.initialize.bind(null, {}),
             );
+            window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
         } catch (callError) {
         }
 }
