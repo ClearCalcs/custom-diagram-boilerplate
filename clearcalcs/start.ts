@@ -22,14 +22,7 @@ export default async function start() {
             // When the diagram is the top level element e.g not in an iframe,
             // avoid acting on certain events to prevent recursive loop
             // due to listening and posting within the same window
-            if (
-                window.parent === window &&
-                (["initialized", "resize"].includes(event.data.callId) ||
-                    event.data.hasOwnProperty("response") ||
-                    event.data.error)
-            ) {
-                return;
-            }
+            if (window.parent === window && !event.data.data) return;
 
             try {
                 const { method, data, callId } = event.data;
