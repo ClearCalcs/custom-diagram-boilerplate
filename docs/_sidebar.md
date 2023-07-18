@@ -1,0 +1,2 @@
+-   Get Started
+    -   [Quick Start Guide](/quick-start-guide "Quick Start Guide |ClearCalcs Custom Diagram Boilerplate")
