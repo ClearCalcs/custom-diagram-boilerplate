@@ -23,6 +23,7 @@
     "scripts": {
         "start": "parcel clearcalcs/**/index.html",
         "test": "parcel clearcalcs/**/*.html --port 4321",
-        "compile": "parcel build clearcalcs/**/index.html"
+        "compile": "parcel build clearcalcs/**/index.html",
+        "docs": "cd docs && npm install && docsify serve -p 4444"
     }
 }
