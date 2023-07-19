@@ -40,7 +40,7 @@ This will start a server at [http://localhost:1234](http://localhost:1234), you 
 
 While this server is running, any code changes you make will automatically be updated in the browser. See [Building your widget](/#/guide) for more information on how to start building a widget.
 
-### Starting the Testing Runner
+### Starting the Test Runner
 
 With the development server running, you can start the Test Runner. This will allow you to run your diagram in an environment that simulates the communication your widget will have with the ClearCalcs platform. In a new terminal or terminal tab at the folder of your code, run:
 
