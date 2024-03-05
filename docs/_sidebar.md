@@ -1,2 +1,4 @@
 -   Get Started
     -   [Quick Start Guide](/quick-start-guide "Quick Start Guide |ClearCalcs Custom Diagram Boilerplate")
+-   Static Diagram
+    -   [Core](/static-diagram-core "Understand the underlying technology and API for rendering the static diagrams")
