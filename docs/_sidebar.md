@@ -1,2 +1,4 @@
 -   Get Started
     -   [Quick Start Guide](/quick-start-guide "Quick Start Guide |ClearCalcs Custom Diagram Boilerplate")
+-   Static Diagram
+    -   [Rendering](/static-diagram-rendering "How static diagrams are rendered in the sheet")
