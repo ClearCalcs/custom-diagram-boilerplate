@@ -1,37 +1,77 @@
 # Rendering
 
-## Sheet View
+The custom diagram is rendered in 3 distinct arrangements:
 
-### SVG as image
+-   Sheet View
+-   One-Page print mode
+-   Standard print mode
 
-The SVG is rendered inside an img tag, must match the W3 spec for SVG as image _[link](https://www.w3.org/wiki/SVG_Security#SVG_as_image)_. The key implications for custom diagrams are:
+?> The size, position and aspect ratio are controlled by the SVG `viewBox` property on the root SVG element. Do not use `height` or `width` properties, as content may be rendered incorrectly or cut-off.
 
--   CSS must be in style tag inside SVG.
+## Size and Position
+
+### Sheet View
+
+<div style="text-align: center;">
+
+![Screenshot of the custom diagram in sheet view](_media/static-diagram-rendering/sheet-size-padding.png ":size=400")
+
+</div>
+
+|           |                        |
+| --------- | ---------------------- |
+| Width     | Equal to column width  |
+| Height    | Preserves aspect ratio |
+| Margins   | 0px                    |
+| Centering | None                   |
+| Format    | SVG                    |
+
+### Print modes
+
+| One Page                                                                                 | Standard                                                                                 |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| ![One Page](_media/static-diagram-rendering/one-page-print-size-padding.png ":size=400") | ![Standard](_media/static-diagram-rendering/standard-print-size-padding.png ":size=400") |
+
+|            |                                                  |
+| ---------- | ------------------------------------------------ |
+| Width      | Equal to half page width (A4 or Letter)          |
+| Height     | Preserves aspect ratio                           |
+| Margins    | ~0px in one-page <br> 1/4 page width in standard |
+| Centering  | Yes                                              |
+| Format     | PNG                                              |
+| Resolution | 800px W (fixed) <br> 1600px H (max)              |
+
+## Aspect Ratio
+
+This may be set by the `viewBox` property, either a static fixed value or dynamic values in the render function.
+
+The aspect ratio should be limited where the height shall not exceed twice the width. Taller aspect ratio will be rendered in the sheet, but will get cut off in print.
+
+<div style="text-align: center;">
+
+![Screenshot of the custom diagram in sheet view](_media/static-diagram-rendering/aspect-ratio.svg ":size=150")
+
+</div>
+
+## Language Restrictions / sandboxing
+
+Custom diagram should be restricted to use features for the environment it is used for. i.e. sheet and print modes, or just print mode where an interactive diagram is also used.
+
+### Sheet View
+
+The SVG is rendered inside an `<img>` tag, which has specific browser restrictions which include but are not limited to:
+
 -   No client-side javascript (e.g. no buttons, event listeners)
--   External resources (e.g. images, stylesheets) cannot be loaded. Currently ESBuild is not configured to inline assets into the compiled javascript file, although interested in developing this.
+-   No external resources (e.g. images, stylesheets). In future may allow via ES Build bundling.
 
-### Aspect Ratio
+See W3 SVG Security Page for details _[link](https://www.w3.org/wiki/SVG_Security#SVG_as_image)_
 
-Very tall aspect ratios e.g. 10 x 100 will render unreasonably tall in the sheet, because the default behaviour is to stretch the SVG width to equal the ClearCalcs column width (approx 600px or half the users' monitor width), with the height stretched proportionally. Some strategies to handle rendering:
+### Print View
 
--   Fixed aspect ratio using the viewBox property on root node. e.g. `viewBox="0 0 800 600`
--   Dynamically pad wide axis if diagram height is to be exceeded
--   Shrink content if it has excessively tall aspect ratio
+The SVG is converted into a PNG image with the following settings using the Sharp library _[link](https://sharp.pixelplumbing.com/)_. The restrictions applied include but are not limited to:
 
-Practically, the height should be limited to less than or equal to 2\*width due to the print restrictions (below)
-
-## Print View
-
-The SVG is converted to a PNG image using the Sharp library _[link](https://sharp.pixelplumbing.com/)_. Under the hood, librsvg _[link](https://wiki.gnome.org/Projects/LibRsvg)_ is used.
-
-### Known Unsupported Issues
-
--   css property `dominant-baseline`
--   css variables `var()` _[link](https://gitlab.gnome.org/GNOME/librsvg/-/issues/459)_
+-   no css variables `var()` _[link](https://gitlab.gnome.org/GNOME/librsvg/-/issues/459)_
+-   no css property `dominant-baseline`
 -   no embedded fonts _[link](https://gitlab.gnome.org/GNOME/librsvg/-/issues/153)_
 
-This is not an exhaustive list. Search Issues in [https://github.com/lovell/sharp](https://github.com/lovell/sharp) or [https://gitlab.gnome.org/GNOME/librsvg/-/issues](https://gitlab.gnome.org/GNOME/librsvg/-/issues)
-
-### Resolution / Aspect Ratio
-
-Prints resolution is 800px wide with proportional height up to 1600px. When exceeding 1x2 aspect ratio, cropping will occur with bottom content cut off. This is done so content does not cause PDF rendering issues where the image cannot fit inside the A4 / Letter page.
+See Sharp documentation or library librsvg (used under the hood) for details _[link](https://wiki.gnome.org/Projects/LibRsvg)_
