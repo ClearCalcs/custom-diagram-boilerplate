@@ -2,13 +2,21 @@
 
 ## Introduction
 
-Custom Diagrams is a method of plugging in visualizations into ClearCalcs calculators. They deliver a full-featured HTML, CSS and Javascript environment to develop the diagram, whilst providing tight integration with the live calculation engine of ClearCalcs.
+Custom Diagrams is a powerful method of plugging in rich visualisations into ClearCalcs calculators. They deliver a full-featured HTML, CSS and Javascript environment to develop diagrams or even other rich visualisations such as CAD viewers, graphs, images, maps and deep interactivity such as tooltips and actions, whilst taking advantage of the tight integration with the live calculation engine of ClearCalcs.
 
-Rendering occurs in the sheet view on the client in response to new values received from the sheet.
+Try out one of our diagrams inside a real-world calculator below. Change one of the "Bolt Pattern Coordinates" and watch the diagram update.
 
-![Screenshot of the custom diagram in sheet view](_media/about/sheet-view.png)
+<div style="text-align: center;">
 
-Rendering also occurs on the ClearCalcs' servers in response to a user printing a sheet.
+[beam analysis example](https://clearcalcs.com/embed/steelBoltAnalysisFree/8d313ffc-6145-42a0-a86d-dddac98aa136?suppressLogo=1 ":include :type=iframe max-width=350px height=500px")
+
+</div>
+
+## Choosing a Diagram Type
+
+Diagrams come in two different forms, interactive and static. Static are simpler SVGs can be used for general diagrams where there is no need for user interactivity. Interactive diagrams are more advanced full HTML iframes that can also send values back out into the calculator, but cannot be used in print. Both types re-render in response to changes made in the sheet.
+
+?> You can use Interactive & Static diagrams separately or combine together for the best experience!
 
 | Feature               | Interactive | Static |
 | --------------------- | ----------- | ------ |
@@ -18,8 +26,6 @@ Rendering also occurs on the ClearCalcs' servers in response to a user printing 
 | JS/TS (incl bundling) | ✅          | ✅     |
 | Full HTML             | ✅          |        |
 | User interaction      | ✅          |        |
-
-?> You can use Interactive & Static diagrams separately or combine together for the best experience!
 
 To start making your own custom diagram, follow the simple setup guide to start developing.
 The instructions are targetted towards the interactive diagram, although the process for static diagrams is similar.
