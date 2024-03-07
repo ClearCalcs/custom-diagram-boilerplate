@@ -2,3 +2,5 @@
     -   [Quick Start Guide](/quick-start-guide "Quick Start Guide |ClearCalcs Custom Diagram Boilerplate")
 -   Static Diagram
     -   [Core](/static-diagram-core "Understand the underlying technology and API for rendering the static diagrams")
+-   Global
+    -   [Global Capabilities](/global-capabilities "Time saving features")
