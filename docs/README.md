@@ -8,13 +8,13 @@ Try out one of our diagrams inside a real-world calculator below. Change one of 
 
 <div style="text-align: center;">
 
-[Click to Go to Interactive Example](https://clearcalcs.com/embed/steelBoltAnalysisFree/8d313ffc-6145-42a0-a86d-dddac98aa136?suppressLogo=1 ":include :type=iframe width=350px height=500px")
+[Click to Go to Interactive Example](https://clearcalcs.com/embed/steelBoltAnalysisFree/8d313ffc-6145-42a0-a86d-dddac98aa136?suppressLogo=1 ":include :type=iframe width=450px height=500px")
 
 </div>
 
 ## Choosing Diagram Type
 
-Diagrams come in two different forms, interactive and static. Static are simpler SVGs can be used for general diagrams where there is no need for user interactivity. Interactive diagrams are more advanced full HTML iframes that can also send values back out into the calculator, but cannot be used in print. Both types re-render in response to changes made in the sheet.
+Diagrams come in two different forms, interactive and static. Static are simpler SVGs that can be used for general diagrams where there is no need for user interactivity. Interactive diagrams are more advanced full HTML iframes that can also send values back out into the calculator, but cannot be used in print. Both types re-render in response to changes made in the sheet.
 
 ?> You can use Interactive & Static diagrams separately or combine together for the best experience!
 
@@ -29,11 +29,9 @@ Diagrams come in two different forms, interactive and static. Static are simpler
 
 To start making your own custom diagram, follow the simple setup guide to start developing.
 
-## Set Up: Interactive
+## Installation
 
-### Installation
-
-1. [Download the code](https://github.com/ClearCalcs/custom-diagram-boilerplate/archive/refs/heads/main.zip) and unzip it. Alternatively, you can clone it from our [Github](https://github.com/ClearCalcs/custom-diagram-boilerplate).
+1. Download [Source Code interactive](https://github.com/ClearCalcs/custom-diagram-boilerplate/archive/refs/heads/main.zip) or Source Code Static ([contact ClearCalcs for link](mailto:support@clearcalcs.com)) and unzip it. Alternatively, you can clone it from our [GitHub](https://github.com/ClearCalcs/custom-diagram-boilerplate).
 2. NodeJS (version 19 or newer) _[https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)_
 3. In your terminal navigate into the folder containing the code
 
@@ -47,9 +45,10 @@ cd path/to/repository/folder
 npm install
 ```
 
+## Local Testing: Interactive
+
 ### Starting the Development Server
 
-While developing your widget, you'll want to start the development server by running the following in your terminal from the folder of your code:
 For developing your widget, you can start a web server that will automatically update as you make code changes, by running:
 
 ```
@@ -62,7 +61,7 @@ This will start a server at [http://localhost:1234](http://localhost:1234), you 
 
 ![Screenshot of the Development Server](_media/quick-start-guide/dev-server.png)
 
-While this server is running, any code changes you make will automatically be updated in the browser. See [Building your widget](/#/guide) for more information on how to start building a widget.
+While this server is running, any code changes you make will automatically be updated in the browser. See [Building your widget](/quick-start-guide?id=developing) for more information on how to start building a widget.
 
 ### Starting the Test Runner
 
@@ -80,19 +79,57 @@ This will start another server [http://localhost:4321](http://localhost:4321), y
 
 The Test Runner will also update automatically with your code changes while it's running. See [Using the Test Runner](/#/guide) for more information on how get the most out of the test runner.
 
-### Building
+### Compilation
+
+Once happy with changes, compile into a single html file at `output/index.html`.
 
 ```
 npm run-script compile
 ```
 
-Your compiled file will be at `output/index.html`
+## Local Testing: Static
+
+### Compilation
+
+While developing your static diagram widget, you'll need to generate a compiled file first before testing rendering or params locally. This should be run initially or whenever code changes.
+
+```
+npm run compile
+```
+
+#### Testing render
+
+1. Update the `tester/test.js` => `inputParams` with the parameter values the diagram expects.
+
+```javascript
+const inputParams = {
+    circleFill: "red",
+    rectFill: "blue",
+};
+```
+
+2. Generate an SVG file. Output will be placed in `tester/out/diagram.svg`
+
+```bash
+npm run test-render
+```
+
+#### Testing params
+
+1. Generate params. Output will be logged to the console and also saved into `tester/out/params.json`
+
+```bash
+npm run test-params
+```
 
 ## Developing
+
+With the html file and javascript file below, we create a diagram with 2 simple shapes. This diagram can be embedded into a calculator using the calculator builder, and the parameters `circleFill` and `rectFill` can be wired up to other inputs or equations.
 
 src/main.html
 
 -   [Source Code (interactive)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/main.html)
+-   Source Code (static) - [contact ClearCalcs for link](mailto:support@clearcalcs.com)
 
 ```html
 <svg id="svg" viewBox="0 0 500 100">
@@ -104,6 +141,7 @@ src/main.html
 src/interface.ts
 
 -   [Source Code (interactive)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts)
+-   Source Code (static) - [contact ClearCalcs for link](mailto:support@clearcalcs.com)
 
 For static diagram changes to `render`, see [Static Diagram Usage](/static-diagram-core?id=usage)
 
@@ -130,9 +168,7 @@ export async function params() {
 }
 ```
 
-With the html file and javascript file above, we have created a diagram visualizing 2 simple shapes in a calculator. This diagram can be embedded into a calculator using the calculator builder, and the parameters `circleFill` and `rectFill` can be wired up to other inputs or equations.
-
-On every change of the above parameters, the `render()` function is invoked automatically, causing the shapes' fill colours to be updated in sheet view (and print if using static diagram). `params()` is invoked only when the calculation is first built, to identify the parameters the diagram expects to react to changing values. `initialize()` will run before whenever diagram is first loaded. Use this to initialize any variables event handlers before any render or params calls come in.
+On every change of the above parameters, the `render()` function is invoked automatically, causing the shapes' fill colours to be updated in sheet view (and print if using static diagram). `params()` is invoked only when the calculation is first built, to identify the parameters the diagram expects to react to changing values. `initialize()` will run whenever diagram is first loaded. Use this to initialize any variables event handlers before any render or params calls come in.
 
 ## Using in ClearCalcs
 
