@@ -18,32 +18,49 @@ The custom diagram is rendered in 3 distinct arrangements:
 
 </div>
 
-|           |                        |
-| --------- | ---------------------- |
-| Width     | Equal to column width  |
-| Height    | Preserves aspect ratio |
-| Margins   | 0px                    |
-| Centering | None                   |
-| Format    | SVG                    |
+|           |                              |
+| --------- | ---------------------------- |
+| Width     | Column Width (380 to 800 px) |
+| Height    | Preserves aspect ratio       |
+| Margins   | 0px                          |
+| Centering | None                         |
+| Format    | SVG                          |
 
-### Print modes
+### Standard Print
 
-| One Page                                                                                 | Standard                                                                                 |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| ![One Page](_media/static-diagram-rendering/one-page-print-size-padding.png ":size=400") | ![Standard](_media/static-diagram-rendering/standard-print-size-padding.png ":size=400") |
+<div style="text-align: center;">
 
-|            |                                                  |
-| ---------- | ------------------------------------------------ |
-| Width      | Equal to half page width (A4 or Letter)          |
-| Height     | Preserves aspect ratio                           |
-| Margins    | ~0px in one-page <br> 1/4 page width in standard |
-| Centering  | Yes                                              |
-| Format     | PNG                                              |
-| Resolution | 800px W (fixed) <br> 1600px H (max)              |
+![Standard](_media/static-diagram-rendering/standard-print-size-padding.png ":size=400")
+
+</div>
+
+|            |                                         |
+| ---------- | --------------------------------------- |
+| Width      | Equal to half page width (A4 or Letter) |
+| Height     | Preserves aspect ratio                  |
+| Margins    | 1/4 page width                          |
+| Centering  | Yes                                     |
+| Format     | PNG                                     |
+| Resolution | 800px W (fixed) <br> 1600px H (max)     |
+
+### One Page Print
+
+<div style="text-align: center;">
+
+![One Page](_media/static-diagram-rendering/one-page-print-size-padding.png ":size=400")
+
+</div>
+
+|            |                                     |
+| ---------- | ----------------------------------- |
+| Width      | Column Width                        |
+| Height     | Preserves aspect ratio              |
+| Margins    | 0px                                 |
+| Centering  | Yes                                 |
+| Format     | PNG                                 |
+| Resolution | 800px W (fixed) <br> 1600px H (max) |
 
 ## Aspect Ratio
-
-This may be set by the `viewBox` property, either a static fixed value or dynamic values in the render function.
 
 The aspect ratio should be limited where the height shall not exceed twice the width. Taller aspect ratio will be rendered in the sheet, but will get cut off in print.
 
