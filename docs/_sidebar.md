@@ -3,5 +3,7 @@
 -   Static Diagram
     -   [Core](/static-diagram-core "Understand the underlying technology and API for rendering the static diagrams")
     -   [Rendering](/static-diagram-rendering "How static diagrams are rendered in the sheet")
+-   Interactive Diagram
+    -   [Core](/interactive-diagram-core "Understand the underlying technology and API for rendering the interactive diagrams")
 -   Global
     -   [Global Capabilities](/global-capabilities "Time saving features")
