@@ -2,28 +2,25 @@
 
 ## Core Features
 
-### Supported
+The interactive custom diagram leverages modern developer tooling that can simplify the creation of complex diagrams with multiple files and dependencies whilst still compiling down to a html file that can be used inside of the user's browser. Much of this is enabled via the [Parcel](https://parceljs.org/) bundler. Features include:
 
--   Automatic code compilation with minification via Parcel
--   ESM Module Imports (CJS not allowed)
--   External assets (e.g. images)
--   Test Runner
+-   Code compilation and minification
+-   Asset importing e.g. images
+-   Bundling dependencies
+-   ESM Module Imports
+-   Sass [link](https://sass-lang.com/): Css stylesheets
+-   Support for Typescript
+-   Transpilation for older browser versions (i.e. last 2 years) - should not be changed
+-   Test Runner with hot reloading
 
 ## Bundling
 
-The interactive diagram code is the compiled html file generated from this repository via [Parcel](https://parceljs.org/).
-
-### Included Packages
-
--   Typescript
--   Sass [link](https://sass-lang.com/): Css stylesheets
-
-### Add your own packages
+On running `npm run compile`, [Parcel](https://parceljs.org/) generates a html file that compiles your code along with all bundled dependencies.
 
 Add dependency to `package.json` file in the "dependencies" section.
 
-Run `npm install`
+```
+npm install
+```
 
 Test Runner will hot reload to include dependency
-
-Use ESM module imports in your file.
