@@ -5,3 +5,5 @@
     -   [Rendering](/static-diagram-rendering "How static diagrams are rendered in the sheet")
 -   Global
     -   [Global Capabilities](/global-capabilities "Time saving features")
+-   Contributing
+    -   [Add To Docs](/contributing-to-docs "How to contribute to docs")
