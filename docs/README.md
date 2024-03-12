@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Custom Diagrams is a powerful method of plugging in rich visualisations into ClearCalcs calculators. They deliver a full-featured HTML, CSS and Javascript environment to develop diagrams or even other rich visualisations such as CAD viewers, graphs, images, maps and deep interactivity such as tooltips and actions, whilst taking advantage of the tight integration with the live calculation engine of ClearCalcs.
+Custom Diagrams is a powerful method of plugging in rich visualisations into ClearCalcs calculators. They deliver a full-featured HTML, CSS and Javascript environment to develop engineering drawings, diagrams graphs, or even interactive experiences such as maps or CAD viewers. Custom diagrams fully take advantage of the tight integration with the live calculation engine of ClearCalcs.
 
 Try out one of our diagrams inside a real-world calculator below. Change one of the "Bolt Pattern Coordinates" and watch the diagram update.
 
