@@ -170,14 +170,4 @@ export async function params() {
 
 On every change of the above parameters, the `render()` function is invoked automatically, causing the shapes' fill colours to be updated in sheet view (and print if using static diagram). `params()` is invoked only when the calculation is first built, to identify the parameters the diagram expects to react to changing values. `initialize()` will run whenever diagram is first loaded. Use this to initialize any variables event handlers before any render or params calls come in.
 
-## Using
-
-A detailed explanation of how diagrams are used in the ClearCalcs platform is available at [Using in ClearCalcs](/using-in-clearcalcs "How diagrams are used inside ClearCalcs calculators")
-
--   Contact ClearCalcs to obtain a builder license on [support@clearcalcs.com](mailto:support@clearcalcs.com)
--   Upload `output/index.html` (interactive diagram) and/or `dist/compiled.js` (static diagram) into the ClearCalcs builder.
--   Add values or references to other sheet widgets against each parameter
-
-![Screenshot of the builder custom diagram editor](_media/about/builder-screenshot.png)
-
--   Calculator can now be published for use in your project!
+A detailed explanation of how diagrams are used in the ClearCalcs platform is available at [Using in ClearCalcs](/using-in-clearcalcs?id=using-in-clearcalcs "How diagrams are used inside ClearCalcs calculators")
