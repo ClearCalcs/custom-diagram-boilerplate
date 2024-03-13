@@ -2,7 +2,10 @@
     -   [Quick Start Guide](/quick-start-guide "Quick Start Guide |ClearCalcs Custom Diagram Boilerplate")
 -   Static Diagram
     -   [Core](/static-diagram-core "Understand the underlying technology and API for rendering the static diagrams")
-    -   [Rendering](/static-diagram-rendering "How static diagrams are rendered in the sheet")
+    -   [Rendering](/static-diagram-rendering "How static diagrams are rendered in the sheet or print")
+-   Interactive Diagram
+    -   [Core](/interactive-diagram-core "Understand the underlying technology and API for rendering the interactive diagrams")
+    -   [Rendering](/interactive-diagram-rendering "How interactive diagrams are rendered in the sheet")
 -   Global
     -   [Global Capabilities](/global-capabilities "Time saving features")
 -   Contributing
