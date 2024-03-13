@@ -2,15 +2,15 @@
 
 ## Introduction
 
-The Test Runner allows visualizing the custom interactive diagram and how it responds to each function that is user implemented such as `render`, `initialize`, `params` and `dimensions`. It enables quick, iterative development of the custom diagram in an environment that mimics the ClearCalcs app for maximum compatibility when it is deployed in a real calculator.
+The Test Runner allows visualisation of the custom interactive diagram and how it responds to each function that is user implemented such as `render`, `initialize`, `params` and `dimensions`. It enables quick, iterative development of the custom diagram in an environment that mimics the ClearCalcs app for maximum compatibility when it is deployed in a real calculator.
 
-It allows this compatibility by running the diagram code within a fake ClearCalcs app that has the same capabilities and restrictions. It can be used to test the diagram is:
+It allows this compatibility by running the diagram code within a fake ClearCalcs app that has the same capabilities and restrictions. The following diagram functionality may be tested:
 
--   initial visual state.
--   visual state after render.
--   expected parameters
--   reported dimensions
--   error responses
+-   renders initial visual state without parameters
+-   updates visual state after render() called
+-   returns expected parameters after params() called
+-   reports its own dimensions after dimensions() called
+-   returns error response when timing out or throwing an error.
 
 ![Screenshot of the Test Runner](_media/quick-start-guide/testing-server.png)
 
@@ -53,22 +53,33 @@ Example:
 
 ### Initialize
 
-This function will be run once automatically on starting the test runner, however, it can be triggered manually if you want to test its affect on the diagram.
+This function will be run once automatically on starting the test runner, however, it can be triggered manually if you want to test its effect on the diagram.
 
 ### Render
 
-This will be the most commonly called method to regenerate the diagram according to the input parameters.
+The render method can be called to see how the diagram updates when a new set of values is provided.
 
-The data should be written in JSON format with each parameter expected, for example:
+To use this function, add a valid object of parameters into the text area with label "data". It should contain an object with keys for all parameters your diagram expects. The values for each key may be any types that the diagram can receive from ClearCalcs.
+
+-   `string`
+-   `number`
+-   `array`: may be nested, containing only strings or numbers
+-   `object`: may be nested, containing any of the above.
+
+If there is a formula or reference to another widget that is usually entered in ClearCalcs, this needs to be converted back to above data types. Units from [mathjs](https://mathjs.org/) cannot be used.
+
+?> The test runner directly calls `eval()` on the entered params, whereas ClearCalcs app evaluates formulas using [mathjs](https://mathjs.org/). These are not equivalent.
 
 ```js
-// Received `render` call (...), with:-
 {
-    circleFill: "red",
-    rectFill: "green",
-    triangleFill: "yellow",
+    myString: "red",
+    myNumber: 2,
+    myArray: [1,2,3],
+    myObject: {a: 1, b: 2}
 }
 ```
+
+This will be the most commonly called method to regenerate the diagram according to the input parameters.
 
 ### Params
 
