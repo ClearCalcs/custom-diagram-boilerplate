@@ -77,7 +77,7 @@ This will start another server [http://localhost:4321](http://localhost:4321), y
 
 ![Screenshot of the Test Runner](_media/quick-start-guide/testing-server.png)
 
-The Test Runner will also update automatically with your code changes while it's running. See [Using the Test Runner](/#/guide) for more information on how get the most out of the test runner.
+The Test Runner will also update automatically with your code changes while it's running. See [Using the Test Runner](/interactive-diagram-test-runner) for more information on how get the most out of the test runner.
 
 ### Compilation
 
