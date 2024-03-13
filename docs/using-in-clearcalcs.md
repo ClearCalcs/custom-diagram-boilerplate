@@ -1,11 +1,15 @@
 # Using in ClearCalcs
 
+ClearCalcs is a platform for structural engineers to use calculators to design safe structures such as buildings and civil infrastructure.
+
+Find out more by visiting [https://clearcalcs.com/](https://clearcalcs.com/).
+
 ## Sign Up
 
-ClearCalcs is a platform for structural engineers to use calculators to design safe structures such as buildings and civil infrastructure. The calculators are creatd
+To work with a custom diagram inside of ClearCalcs, you will need to sign up for a free account and request access to the builder.
 
-1. [Sign up](https://clearcalcs.com/signup) for a free accounts with ClearCalcs
-2. Contact ClearCalcs to obtain a builder license on [support@clearcalcs.com](mailto:support@clearcalcs.com)
+1. Sign up via [https://clearcalcs.com/signup](https://clearcalcs.com/signup)
+2. Request access to builder by contacting [support@clearcalcs.com](mailto:support@clearcalcs.com)
 3. Once confirmed, you will see a "Calculator Builder" icon in the sidebar when you log in.
 
 ## Building Calculators
