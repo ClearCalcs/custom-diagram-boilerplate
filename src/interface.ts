@@ -1,10 +1,12 @@
 export async function initialize(outParams, sendParams) {
-    /*
-    Example use:
-    document.getElementById("svg")?.addEventListener("message", (event) => {
-        sendParams({ circleBorder: "black" });
+    document.getElementById("svg")?.addEventListener("click", (event) => {
+        if (event.target === document.getElementById("circle")) {
+            sendParams({
+                circleBorder:
+                    outParams.circleBorder === "red" ? "black" : "red",
+            });
+        }
     });
-    */
 }
 
 export async function render(params) {
@@ -22,6 +24,12 @@ export async function render(params) {
         document
             .getElementById("triangle")
             ?.setAttribute("fill", params.triangleFill);
+    }
+
+    if (!!params.circleBorder) {
+        document
+            .getElementById("circle")
+            ?.setAttribute("stroke", params.circleBorder);
     }
 }
 
