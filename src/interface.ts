@@ -1,4 +1,11 @@
-export async function initialize() {}
+export async function initialize(outParams, sendParams) {
+    /*
+    Example use:
+    document.getElementById("svg")?.addEventListener("message", (event) => {
+        sendParams({ circleBorder: "black" });
+    });
+    */
+}
 
 export async function render(params) {
     if (!!params.circleFill) {
@@ -24,4 +31,8 @@ export async function params() {
         { key: "rectFill", type: "string" },
         { key: "triangleFill", type: "string" },
     ];
+}
+
+export async function outParams() {
+    return [{ key: "circleBorder", type: "string" }];
 }

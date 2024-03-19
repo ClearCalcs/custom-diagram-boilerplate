@@ -1,5 +1,6 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
 import timeoutFunctionCall from "./utils/timeoutFunctionCall";
+import OutParams from "./utils/OutParams";
 import debounce from "./utils/debounce";
 
 import * as clearcalcsInterface from "./interface";
@@ -12,6 +13,22 @@ const SOURCE_ORIGIN =
         : new URL(document.referrer).origin;
 
 export default async function start() {
+    let initialParams = {};
+    if (typeof IFRAME_INTERFACE["outParams"] === "function") {
+        try {
+            const expectedParams = await timeoutFunctionCall(
+                IFRAME_INTERFACE.outParams.bind(null, {}),
+            );
+            if (Array.isArray(expectedParams)) {
+                expectedParams.forEach((param) => {
+                    initialParams[param.key] = undefined;
+                });
+            }
+        } catch (callError) {
+            throw new Error("Params is not a valid shape");
+        }
+    }
+    const outParams = new OutParams(initialParams);
     window.addEventListener(
         "message",
         async function (event) {
@@ -36,6 +53,11 @@ export default async function start() {
                     throw new TypeError(
                         "callId cannot be undefined. Please add callId and try again.",
                     );
+                }
+
+                // Any event listeners listening on outParams.params should see the new value
+                if (method === "render" && data) {
+                    outParams.setParams(data);
                 }
 
                 try {
@@ -91,7 +113,11 @@ export default async function start() {
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         try {
             await timeoutFunctionCall(
-                IFRAME_INTERFACE.initialize.bind(null, {}),
+                IFRAME_INTERFACE.initialize.bind(
+                    null,
+                    outParams.params,
+                    outParams.sendParams,
+                ),
             );
             window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
         } catch (callError) {
