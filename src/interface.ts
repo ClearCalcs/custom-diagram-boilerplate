@@ -26,10 +26,10 @@ export async function render(params) {
             ?.setAttribute("fill", params.triangleFill);
     }
 
-    if (!!params.circleBorder) {
+    if (!!params.storedParams.circleBorder) {
         document
             .getElementById("circle")
-            ?.setAttribute("stroke", params.circleBorder);
+            ?.setAttribute("stroke", params.storedParams.circleBorder);
     }
 }
 

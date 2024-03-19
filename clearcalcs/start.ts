@@ -56,8 +56,12 @@ export default async function start() {
                 }
 
                 // Any event listeners listening on outParams.params should see the new value
-                if (method === "render" && data) {
-                    outParams.setParams(data);
+                if (
+                    method === "render" &&
+                    data?.storedParams &&
+                    typeof data.storedParams === "object"
+                ) {
+                    outParams.setParams(data.storedParams);
                 }
 
                 try {
