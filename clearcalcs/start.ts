@@ -1,6 +1,5 @@
 import generateErrorResponse from "./utils/generateErrorResponse";
 import timeoutFunctionCall from "./utils/timeoutFunctionCall";
-import OutParams from "./utils/OutParams";
 import debounce from "./utils/debounce";
 
 import * as clearcalcsInterface from "./interface";
@@ -12,23 +11,28 @@ const SOURCE_ORIGIN =
         ? window.origin
         : new URL(document.referrer).origin;
 
+let storedParams = {};
+const storedParamsInterface = {
+    getStoredParams() {
+        return storedParams;
+    },
+    setStoredParams(newStoredParams) {
+        window.parent.postMessage(
+            {
+                callId: "data",
+                response: {
+                    value: newStoredParams,
+                },
+            },
+            SOURCE_ORIGIN,
+        );
+    },
+    // private
+    _internalSetStoredParams(newStoredParams) {
+        storedParams = newStoredParams;
+    },
+};
 export default async function start() {
-    let initialParams = {};
-    if (typeof IFRAME_INTERFACE["outParams"] === "function") {
-        try {
-            const expectedParams = await timeoutFunctionCall(
-                IFRAME_INTERFACE.outParams.bind(null, {}),
-            );
-            if (Array.isArray(expectedParams)) {
-                expectedParams.forEach((param) => {
-                    initialParams[param.key] = undefined;
-                });
-            }
-        } catch (callError) {
-            throw new Error("Params is not a valid shape");
-        }
-    }
-    const outParams = new OutParams(initialParams);
     window.addEventListener(
         "message",
         async function (event) {
@@ -55,13 +59,19 @@ export default async function start() {
                     );
                 }
 
+                let storedParams, params;
+
                 // Any event listeners listening on outParams.params should see the new value
-                if (
-                    method === "render" &&
-                    data?.storedParams &&
-                    typeof data.storedParams === "object"
-                ) {
-                    outParams.setParams(data.storedParams);
+                if (data) {
+                    ({ storedParams, ...params } = data);
+                    // Has never been set before
+                    if (typeof storedParams !== "object") {
+                        storedParams = {};
+                    }
+
+                    storedParamsInterface._internalSetStoredParams(
+                        storedParams,
+                    );
                 }
 
                 try {
@@ -69,7 +79,11 @@ export default async function start() {
                     // timeoutFunctionCall agnostically, without it needing to
                     // know about the function parameters.
                     const response = await timeoutFunctionCall(
-                        IFRAME_INTERFACE[method].bind(null, data),
+                        IFRAME_INTERFACE[method].bind(
+                            null,
+                            params,
+                            storedParamsInterface.getStoredParams,
+                        ),
                     );
                     window.parent.postMessage(
                         { callId, response },
@@ -119,8 +133,8 @@ export default async function start() {
             await timeoutFunctionCall(
                 IFRAME_INTERFACE.initialize.bind(
                     null,
-                    outParams.params,
-                    outParams.sendParams,
+                    storedParamsInterface.getStoredParams,
+                    storedParamsInterface.setStoredParams,
                 ),
             );
             window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
