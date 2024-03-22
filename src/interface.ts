@@ -1,4 +1,6 @@
 export async function initialize(getStoredParams, setStoredParams) {
+    // EXAMPLE (USER INTERACTION)
+    /*
     document.getElementById("svg")?.addEventListener("click", (event) => {
         if (event.target === document.getElementById("circle")) {
             setStoredParams({
@@ -7,6 +9,7 @@ export async function initialize(getStoredParams, setStoredParams) {
             });
         }
     });
+    */
 }
 
 export async function render(params, getStoredParams) {
@@ -27,11 +30,14 @@ export async function render(params, getStoredParams) {
             ?.setAttribute("fill", params.triangleFill);
     }
 
+    // EXAMPLE (USER INTERACTION)
+    /*
     if (!!storedParams.circleBorder) {
         document
             .getElementById("circle")
             ?.setAttribute("stroke", storedParams.circleBorder);
     }
+    */
 }
 
 export async function params() {
@@ -43,5 +49,8 @@ export async function params() {
 }
 
 export async function storedParams() {
-    return [{ key: "circleBorder", type: "string" }];
+    return [
+        // // EXAMPLE (USER INTERACTION)
+        // { key: "circleBorder", type: "string" }
+    ];
 }
