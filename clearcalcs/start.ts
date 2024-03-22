@@ -61,10 +61,9 @@ export default async function start() {
 
                 let storedParams, params;
 
-                // Any event listeners listening on outParams.params should see the new value
                 if (data) {
                     ({ storedParams, ...params } = data);
-                    // Has never been set before
+                    // Has never been set before or invalid data
                     if (typeof storedParams !== "object") {
                         storedParams = {};
                     }
