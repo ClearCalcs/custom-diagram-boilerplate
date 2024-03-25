@@ -11,6 +11,27 @@ const SOURCE_ORIGIN =
         ? window.origin
         : new URL(document.referrer).origin;
 
+let storedParams = {};
+const storedParamsInterface = {
+    getStoredParams() {
+        return storedParams;
+    },
+    setStoredParams(newStoredParams) {
+        window.parent.postMessage(
+            {
+                callId: "data",
+                response: {
+                    value: newStoredParams,
+                },
+            },
+            SOURCE_ORIGIN,
+        );
+    },
+    // private
+    _internalSetStoredParams(newStoredParams) {
+        storedParams = newStoredParams;
+    },
+};
 export default async function start() {
     window.addEventListener(
         "message",
@@ -38,12 +59,30 @@ export default async function start() {
                     );
                 }
 
+                let storedParams, params;
+
+                if (data) {
+                    ({ storedParams, ...params } = data);
+                    // Has never been set before or invalid data
+                    if (typeof storedParams !== "object") {
+                        storedParams = {};
+                    }
+
+                    storedParamsInterface._internalSetStoredParams(
+                        storedParams,
+                    );
+                }
+
                 try {
                     // Bind the data the method function, so we can pass into
                     // timeoutFunctionCall agnostically, without it needing to
                     // know about the function parameters.
                     const response = await timeoutFunctionCall(
-                        IFRAME_INTERFACE[method].bind(null, data),
+                        IFRAME_INTERFACE[method].bind(
+                            null,
+                            params,
+                            storedParamsInterface.getStoredParams,
+                        ),
                     );
                     window.parent.postMessage(
                         { callId, response },
@@ -91,7 +130,11 @@ export default async function start() {
     if (typeof IFRAME_INTERFACE["initialize"] === "function") {
         try {
             await timeoutFunctionCall(
-                IFRAME_INTERFACE.initialize.bind(null, {}),
+                IFRAME_INTERFACE.initialize.bind(
+                    null,
+                    storedParamsInterface.getStoredParams,
+                    storedParamsInterface.setStoredParams,
+                ),
             );
             window.parent.postMessage({ callId: "initialized" }, SOURCE_ORIGIN);
         } catch (callError) {
