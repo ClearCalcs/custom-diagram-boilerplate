@@ -24,6 +24,7 @@ TODO:
 
 -   connect to persistent elements
 -   access storedParams
+-   Only update in response to user interaction, not timers or change in render params
 
 ### Managing interaction and loading states
 
