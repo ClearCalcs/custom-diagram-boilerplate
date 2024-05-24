@@ -25,6 +25,8 @@ TODO:
 -   connect to persistent elements
 -   access storedParams
 -   Only update in response to user interaction, not timers or change in render params
+-   Consider performance impact of any event handlers
+-   Consider clashes with other mouse / keyboard interactions like zoom / pan.
 
 ### Managing interaction and loading states
 
@@ -32,6 +34,8 @@ TODO:
 
 -   Active and hover states
 -   Render called with delay after setStoredParams
+-   If the interaction has changed the DOM, do you persist until the next render.
+-   Ensure transition and hover states applied via CSS where possible to reduce performance impact on the site
 
 ### Managing state
 
