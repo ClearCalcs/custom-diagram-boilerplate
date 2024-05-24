@@ -83,6 +83,8 @@ Test that the compiled file can be used to render an SVG by using the test runne
 SVG and HTML files can now be loaded into the diagram.
 Other image or data formats may be possible by adding ES Build custom loaders. Consult ClearCalcs if custom loaders are required.
 
+TODO: Example of loading an SVG can be found in the starter example. Link xxx
+
 ## Usage
 
 Unlike the simplified server render function, SVGDOM is bundled to allow DOM manipulation mirroring the DOM API found in the browser.
