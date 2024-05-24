@@ -7,6 +7,7 @@
 -   Interactive Diagram
     -   [Core](/interactive-diagram-core "Understand the underlying technology and API for rendering the interactive diagrams")
     -   [Rendering](/interactive-diagram-rendering "How interactive diagrams are rendered in the sheet")
+    -   [User Interaction](/interactive-diagram-user-interaction "How interactive diagrams handle user interaction")
     -   [Using Test Runner](/interactive-diagram-test-runner "How to use the test runner")
 -   Global
     -   [Global Capabilities](/global-capabilities "Time saving features")

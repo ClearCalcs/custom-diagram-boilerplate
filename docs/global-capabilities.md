@@ -9,9 +9,35 @@ Zoom in or pan around any part of the diagram. Diagrams should be developed to s
 ![Under construction](_media/under_construction_icon.svg ":size=50")
 This feature is still in development.
 
+### Provided Controls
+
+TODO:
+
+-   Zoom In, Out, Back to 100%
+-   Do not block any part of diagram
+
+### Limitations
+
+TODO:
+
+-   Implemented via scaling, viewport remains small.
+-   font size resizing on zoom not available
+-   Max & Min zoom levels
+-   Zoom and large paddings
+-   Mouse / Keyboard support
+
 ## Lightbox
 
 The diagram is rendered in a larger window on the user's browser where toggled by the user. Diagrams should be developed to scale effectively to larger viewports i.e. do not use fixed `height` `width` properties on the SVG.
 
 ![Under construction](_media/under_construction_icon.svg ":size=50")
 This feature is still in development.
+
+### Viewport Best practices
+
+TODO:
+
+Viewport is resized to the lightbox container. Typical screen resolutions xx to xx.
+
+-   fonts and line-widths should be designed to scale to the full screen resolution. Best practices tbd
+-   Zoom is also possible in full screen

@@ -2,11 +2,15 @@
 
 ## Execution Lifecycle
 
+TODO: Update execution lifecycle to include user interaction. Explain no DOM manipulation due to user interaction, await next render.
+
 Each interactive diagram has an execution lifecycle that is hidden away from the diagram creator. When a user navigates to a sheet with a custom diagram, the three phases begin with loading, initializing, then rendering.
 
 1. **loading**: HTML/CSS loaded and Javascript executed (imported dependencies, top-level code)
-2. **initializing**: [initialize()](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts#L1) executed, await return/resolve.
+2. **initializing**: [initialize()](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts#L1) executed, await return/resolve. TODO: Set up event listeners
 3. **rendering**: [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts#L3) executed every time user changes params from sheet.
+4. **user interaction**: `setStoreParams()`
+5. **re-rendering**: with result of above interaction
 
 Any scripts, DOM elements or event listeners set up at the top-level of files, or inside of the `initialize` and `render` functions are maintained until the user navigates away from the sheet.
 
@@ -26,6 +30,8 @@ The interactive custom diagram leverages modern developer tooling that can simpl
 -   Test Runner with hot reloading
 
 ## Bundling
+
+Add note about clearing `.parcel-cache` if stale cache issues
 
 On running `npm run-script compile`, [Parcel](https://parceljs.org/) generates a html file that compiles your code along with all bundled dependencies.
 

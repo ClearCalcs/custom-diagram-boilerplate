@@ -84,3 +84,8 @@ This will be the most commonly called method to regenerate the diagram according
 ### Params
 
 The return value of the params method is outputted.
+
+## Limitations with user interaction
+
+TODO
+Testing should be conducted in the builder.

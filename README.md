@@ -2,6 +2,8 @@
 
 Scaffolding for creating custom diagram widgets in ClearCalcs
 
+TODO: Update Readme to point to docs, and also render the same readme page as docs
+
 ## Requirements
 
 -   Node > v19 - For installation instructions for various operating systems. [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)

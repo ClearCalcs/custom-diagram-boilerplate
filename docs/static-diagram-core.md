@@ -33,7 +33,7 @@ The code compiled by the user of this repository runs inside a [V8 isolate](http
 The lambda expects a javascript file that contains at minimum a `params()` and a `render()` function. The simplest possible render() is a valid SVG string, like below although this doesn't benefit from the boilerplate that provides packaging and a browser-like DOM API.
 
 ```javascript
-function render(params) {
+function render(params, storedParams) {
     return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="4" fill="yellow" />
         </svg>`;
@@ -49,6 +49,8 @@ function params() {
 
 ## Bundling
 
+TODO: Add comment about windows compatible compilation using cross-env
+
 The static diagram code is the compiled javascript file generated from the static diagram repository by ES Build.
 
 The compiled file is compatible with the server limitations above excluding, although see unsupported features when developing your diagram.
@@ -56,10 +58,15 @@ The compiled file is compatible with the server limitations above excluding, alt
 ### Included Packages
 
 -   SVGDOM - _[link](https://github.com/svgdotjs/svgdom)_ Render SVG DOM via
--   Fontkit _[link](https://github.com/foliojs/fontkit)_ browser build excluding file system APIs. Used by SVG DOM
 -   Buffer _[link](https://github.com/feross/buffer)_ browser build of NodeJS Buffer API
--   text-encoding _[link](https://github.com/inexorabletash/text-encoding)_ polyfill for TextEncoder/TextDecoder. Used by FontKit
 -   Typescript
+
+### SVG DOM Specific Restrictions
+
+Generally all functionality of SVGDOM and its underlying SVGDotJS with following exceptions:
+
+-   `getBBox` will provide bounding box assuming Google Open Sans Regular font _[link](https://fonts.google.com/specimen/Open+Sans)_
+-   Raster images cannot determine their natural size.
 
 ### Add your own packages
 
@@ -71,16 +78,23 @@ When choosing a package, a version targetted for browsers may be available and m
 
 Test that the compiled file can be used to render an SVG by using the test runner, which works on the same server code, although your computer's local nodejs version may be different.
 
+### Custom Loaders
+
+SVG and HTML files can now be loaded into the diagram.
+Other image or data formats may be possible by adding ES Build custom loaders. Consult ClearCalcs if custom loaders are required.
+
 ## Usage
 
 Unlike the simplified server render function, SVGDOM is bundled to allow DOM manipulation mirroring the DOM API found in the browser.
 
-We add some boilerplate at top of `render.ts` called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation. We have excluded the fontkit boilerplate for clarity, however where text elements are used this should be included.
+We add some boilerplate at top of `render.ts` called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation.
+
+### Handling `storedParams` saved via interactive diagram
 
 ```javascript
 // interface.ts
-function render(params) {
-    return update(params);
+function render(params, storedParams) {
+    return update(params, storedParams);
 }
 
 // update.js

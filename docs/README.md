@@ -81,6 +81,8 @@ The Test Runner will also update automatically with your code changes while it's
 
 ### Compilation
 
+TODO: Update to include `cross-env` for windows support
+
 Once happy with changes, compile into a single html file at `output/index.html`.
 
 ```
@@ -166,8 +168,16 @@ export async function params() {
         { key: "rectFill", type: "string" },
     ];
 }
+
+export async function storedParams() {
+    return [{ key: "interactiveKey", type: "string" }];
+}
 ```
 
 On every change of the above parameters, the `render()` function is invoked automatically, causing the shapes' fill colours to be updated in sheet view (and print if using static diagram). `params()` is invoked only when the calculation is first built, to identify the parameters the diagram expects to react to changing values. `initialize()` will run whenever diagram is first loaded. Use this to initialize any variables event handlers before any render or params calls come in.
 
 A detailed explanation of how diagrams are used in the ClearCalcs platform is available at [Using in ClearCalcs](/using-in-clearcalcs?id=using-in-clearcalcs "How diagrams are used inside ClearCalcs calculators")
+
+## Adding Interactivity
+
+TODO: Show a basic example of adding initialize with event listener.

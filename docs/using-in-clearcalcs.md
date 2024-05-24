@@ -47,6 +47,10 @@ The builder is a web-based calculator creator. All ClearCalcs calculators are ad
 
 </div>
 
+### Previewing and handling user interaction
+
+TODO: How to add widgets that depend on diagram, How to test interacting with diagram in preview.
+
 ### Publishing
 
 ClearCalcs staff publish calculators created in the builder for use by all paying customers. It is also possible to publish calculators only usable in your organisation via the builder.
