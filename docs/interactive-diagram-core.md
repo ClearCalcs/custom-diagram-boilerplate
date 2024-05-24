@@ -12,6 +12,20 @@ Each interactive diagram has an execution lifecycle that is hidden away from the
 4. **user interaction**: `setStoreParams()`
 5. **re-rendering**: with result of above interaction
 
+## User Interaction Mental Model
+
+TODO:
+
+Calling `setStoredParams` can be likened to calling an `onChange` event on an text input field and saving its value to a database. It should be treated as a callback only triggered on a user interaction.
+
+Therefore it should not be called on any other event, whether it is a render call with new `params` or on initialization. If a user hasn't touched something on the diagram, the `setStoredParams` should not be called.
+
+## Stale data handling
+
+As the `storedParams` is saved to the ClearCalcs database, it may no longer reflect the state of the diagram and all its `params` at the last render, especially if a user has changed upstream params.
+
+For example, if the `storedParams` toggles items in an array as "on" or "off" but the length of the array is determined by `params`, then the lengths may mismatch, and the diagram must be able to handle the missing or excess length array.
+
 Any scripts, DOM elements or event listeners set up at the top-level of files, or inside of the `initialize` and `render` functions are maintained until the user navigates away from the sheet.
 
 ?> Invocations of `render` where async code is used should be done with caution. Multiple `render` invocations may occur in quick succession without waiting for the previous one to complete. Any DOM manipulations that occur after asynchronous code (e.g. network request) may be completed out of order.
