@@ -95,6 +95,7 @@ try {
         mainFields: ["module", "main"],
         platform: "neutral",
         format: "iife",
+        // TS declarations in custom.d.ts should be sync'ed with loaders
         loader: {
             ".html": "text",
             ".svg": "text",

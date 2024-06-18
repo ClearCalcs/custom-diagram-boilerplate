@@ -49,7 +49,8 @@ formEl.addEventListener("submit", async function (event) {
         // @ts-ignore - LOOK A DINGO! Yes this is bad!
         data = evalData;
     } catch (e) {
-        printOutputMessage(`Data is invalid: ${e.message}`);
+        const error = e as Error;
+        printOutputMessage(`Data is invalid: ${error.message}`);
         return;
     }
 
@@ -74,11 +75,12 @@ formEl.addEventListener("submit", async function (event) {
         prettyPrintObject(response);
         printOutputMessage("");
     } catch (e) {
+        const error = e as Error;
         printOutputMessage(
             `Errored \`${method}\` call (${callId}), with:-`,
             "red",
         );
-        printOutputMessage(`"${e.message}"`);
+        printOutputMessage(`"${error.message}"`);
         printOutputMessage("");
     }
 });
