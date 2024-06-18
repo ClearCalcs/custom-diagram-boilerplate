@@ -1,13 +1,14 @@
+import {
+    ParamsResponse,
+    StoredParamsResponse,
+    paramsTypes,
+} from "../shared/ParamsInterface";
 import update from "./render";
 
-render = function (params, storedParams) {
+render = function (params: ParamsResponse, storedParams: StoredParamsResponse) {
     return update(params, storedParams);
 };
 
 params = function () {
-    return [
-        { key: "circleFill", type: "string" },
-        { key: "rectFill", type: "string" },
-        { key: "triangleFill", type: "string" },
-    ];
+    return paramsTypes;
 };
