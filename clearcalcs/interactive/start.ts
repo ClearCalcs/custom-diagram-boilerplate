@@ -3,7 +3,7 @@ import timeoutFunctionCall from "./utils/timeoutFunctionCall";
 import debounce from "./utils/debounce";
 
 import * as clearcalcsInterface from "./interface";
-import * as diagramInterface from "../src/interface";
+import * as diagramInterface from "../../src/interactive/interface";
 
 const IFRAME_INTERFACE = { ...diagramInterface, ...clearcalcsInterface };
 const SOURCE_ORIGIN =
