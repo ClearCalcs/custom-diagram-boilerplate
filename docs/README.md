@@ -31,7 +31,7 @@ To start making your own custom diagram, follow the simple setup guide to start 
 
 ## Installation
 
-1. Download [Source Code interactive](https://github.com/ClearCalcs/custom-diagram-boilerplate/archive/refs/heads/main.zip) or Source Code Static ([contact ClearCalcs for link](mailto:support@clearcalcs.com)) and unzip it. Alternatively, you can clone it from our [GitHub](https://github.com/ClearCalcs/custom-diagram-boilerplate).
+1. Download [Source Code](https://github.com/ClearCalcs/custom-diagram-boilerplate/archive/refs/heads/main.zip) and unzip it. Alternatively, you can clone it from our [GitHub](https://github.com/ClearCalcs/custom-diagram-boilerplate).
 2. NodeJS (version 19 or newer) _[https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)_
 3. In your terminal navigate into the folder containing the code
 
@@ -84,17 +84,17 @@ The Test Runner will also update automatically with your code changes while it's
 Once happy with changes, compile into a single html file at `output/index.html`.
 
 ```
-npm run-script compile
+npm run compile-interactive
 ```
 
 ## Local Testing: Static
 
 ### Compilation
 
-While developing your static diagram widget, you'll need to generate a compiled file first before testing rendering or params locally. This should be run initially or whenever code changes.
+While developing your static diagram widget, you'll need to generate a compiled file first into a single javascript file at `output/compiled.js` before testing rendering or params locally. This should be run initially or whenever code changes.
 
 ```
-npm run compile
+npm run compile-static
 ```
 
 #### Testing render
@@ -126,10 +126,8 @@ npm run test-params
 
 With the html file and javascript file below, we create a diagram with 2 simple shapes. This diagram can be embedded into a calculator using the calculator builder, and the parameters `circleFill` and `rectFill` can be wired up to other inputs or equations.
 
-src/main.html
-
--   [Source Code (interactive)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/main.html)
--   Source Code (static) - [contact ClearCalcs for link](mailto:support@clearcalcs.com)
+-   [src/static/main.html](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/main.html)
+-   [src/interactive/main.html](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/main.html)
 
 ```html
 <svg id="svg" viewBox="0 0 500 100">
@@ -138,10 +136,8 @@ src/main.html
 </svg>
 ```
 
-src/interface.ts
-
--   [Source Code (interactive)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts)
--   Source Code (static) - [contact ClearCalcs for link](mailto:support@clearcalcs.com)
+-   [src/static/interface.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/interface.ts)
+-   [src/interactive/interface.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts)
 
 For static diagram changes to `render`, see [Static Diagram Usage](/static-diagram-core?id=usage)
 

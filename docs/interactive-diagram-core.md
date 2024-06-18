@@ -5,8 +5,8 @@
 Each interactive diagram has an execution lifecycle that is hidden away from the diagram creator. When a user navigates to a sheet with a custom diagram, the three phases begin with loading, initializing, then rendering.
 
 1. **loading**: HTML/CSS loaded and Javascript executed (imported dependencies, top-level code)
-2. **initializing**: [initialize()](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts#L1) executed, await return/resolve.
-3. **rendering**: [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interface.ts#L3) executed every time user changes params from sheet.
+2. **initializing**: [initialize()](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L1) executed, await return/resolve.
+3. **rendering**: [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L3) executed every time user changes params from sheet.
 
 Any scripts, DOM elements or event listeners set up at the top-level of files, or inside of the `initialize` and `render` functions are maintained until the user navigates away from the sheet.
 
@@ -27,7 +27,7 @@ The interactive custom diagram leverages modern developer tooling that can simpl
 
 ## Bundling
 
-On running `npm run-script compile`, [Parcel](https://parceljs.org/) generates a html file that compiles your code along with all bundled dependencies.
+On running `npm run compile-interactive`, [Parcel](https://parceljs.org/) generates a html file that compiles your code along with all bundled dependencies.
 
 Add dependency to `package.json` file in the "dependencies" section.
 
