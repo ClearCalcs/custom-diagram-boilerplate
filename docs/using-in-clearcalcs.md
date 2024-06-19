@@ -25,35 +25,56 @@ The builder is a web-based calculator creator. All ClearCalcs calculators are ad
 ### Building
 
 1. Drag some widgets for anything the diagram will need to accept via render params. For more details about each widget type and how they can be used, see [Builder Quick Start Guide](https://app.clickup.com/6927027/v/dc/6kcnk-1766/6kcnk-147976)
-2. Drag a Diagram widget and click on the "Edit Diagram" button
+2. Drag a Diagram widget and click on the "Edit Diagram" button.
 
 <div style="text-align: center;">
 
-![Screenshot of the builder](_media/using-in-clearcalcs/builder-main-page.png ":size=400")
+![Screenshot of the builder](_media/using-in-clearcalcs/builder-main-page.png ":size=600")
 
 </div>
 
-3. Upload `output/index.html` (interactive diagram) and/or `output/compiled.js` (static diagram) into the ClearCalcs builder.
-4. Add values or references to other sheet widgets against each parameter
+3. Upload `output/index.html` (interactive diagram) and/or `output/compiled.js` (static diagram) into the ClearCalcs builder. The default example is shown with interactive circle border [src/static/interface.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/interface.ts) included.
+4. Add values or references to other sheet widgets against each param. The storedParams keys will also be listed.
 
 ![Screenshot of the builder custom diagram editor](_media/about/builder-screenshot.png)
 
-5. Click Preview (top-right)
-6. See the diagram reacting when other widgets are changed
+5. Select Preset Editor tab and add default values that the users will see on first entering the template.
 
 <div style="text-align: center;">
 
-![Screenshot of the custom diagram in sheet view](_media/static-diagram-rendering/sheet-size-padding.png)
+![Screenshot of the builder preset editor lookups](_media/using-in-clearcalcs/builder-preset-inputs.png ":size=500")
+
+</div>
+
+6. If the diagram accepts user interaction, also click on the diagram to toggle the default state. Any equations that depend on the storedParams will change from grey triangle to a valid result. The diagram will also be highlighted green.
+
+<div style="text-align: center;">
+
+![Screenshot of the builder preset editor interactive diagram](_media/using-in-clearcalcs/builder-preset-interactive.png ":size=400")
+
+</div>
+
+7. If the diagram accepts user interaction, you can use the result of the storedParams in other widgets.
+
+<div style="text-align: center;">
+
+![Screenshot of using storedParams in equation](_media/using-in-clearcalcs/builder-using-storedParams.png ":size=500")
 
 </div>
 
 ### Publishing
 
-ClearCalcs staff publish calculators created in the builder for use by all paying customers. It is also possible to publish calculators only usable in your organisation via the builder.
+1. Select the current preset created above and click Preview (top-right)
+2. See the diagram reacting when other widgets are changed
 
-See guide to publishing:
+<div style="text-align: center;">
 
-[Calculator Publishing](https://doc.clickup.com/6927027/p/h/6kcnk-147776/9ba20c422155161)
+![Screenshot of the custom diagram in sheet view](_media/using-in-clearcalcs/builder-preview.png ":size=500")
+
+</div>
+
+3. Contact ClearCalcs staff to publish calculators created in the builder for use by all paying customers.
+4. It is also possible to publish calculators only usable in your organisation via the builder. See guide to publishing [Calculator Publishing](https://doc.clickup.com/6927027/p/h/6kcnk-147776/9ba20c422155161)
 
 ## Using Calculators
 
