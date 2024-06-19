@@ -1,8 +1,6 @@
 import { createSVGWindow } from "svgdom";
 import { SVG, registerWindow } from "@svgdotjs/svg.js";
-// @ts-ignore
 import main_html from "./main.html";
-// @ts-ignore
 import logo_svg from "./assets/clearcalcs.svg";
 import {
     ParamsResponse,
