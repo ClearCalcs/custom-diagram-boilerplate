@@ -54,6 +54,14 @@ The builder is a web-based calculator creator. All ClearCalcs calculators are ad
 
 </div>
 
+7. If the diagram accepts user interaction, you can use the result of the storedParams in other widgets.
+
+<div style="text-align: center;">
+
+![Screenshot of using storedParams in equation](_media/using-in-clearcalcs/builder-using-storedParams.png ":size=500")
+
+</div>
+
 ### Publishing
 
 1. Select the current preset created above and click Preview (top-right)
