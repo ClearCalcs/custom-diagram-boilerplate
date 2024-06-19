@@ -186,6 +186,8 @@ Add an event handler in the `initialize` function in [src/interactive/interface.
 
 Send data back to ClearCalcs by calling the `setStoredParams()` function with the new value.
 
+List the storedParams that the diagram expects by implementing the `storedParams()` function.
+
 ```javascript
 export async function initialize(getStoredParams, setStoredParams) {
     document.getElementById("svg")?.addEventListener("click", (event) => {
@@ -197,9 +199,15 @@ export async function initialize(getStoredParams, setStoredParams) {
         }
     });
 }
+
+export async function storedParams() {
+    return [{ key: "circleBorder", type: "string" }];
+}
 ```
 
 ClearCalcs will handle re-running `render` automatically and pass back the `circleBorder` in `getStoredParams()`. The diagram can then render changes to the DOM.
+
+-   [src/interactive/render.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/render.ts)
 
 ```javascript
 export async function render(params, getStoredParams) {

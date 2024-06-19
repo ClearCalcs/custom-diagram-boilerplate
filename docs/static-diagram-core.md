@@ -30,10 +30,12 @@ The code compiled by the user of this repository runs inside a [V8 isolate](http
 
 -   No access to global object: tbc.
 
+### Execution Lifecycle
+
 The lambda expects a javascript file that contains at minimum a `params()` and a `render()` in [src/static/interface.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/interface.ts) executed every time user changes params from sheet. The simplest possible render() is a valid SVG string, like below although this doesn't benefit from the boilerplate that provides packaging and a browser-like DOM API.
 
 ```javascript
-function render(params) {
+function render(params, storedParams) {
     return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="4" fill="yellow" />
         </svg>`;
@@ -75,32 +77,44 @@ Test that the compiled file can be used to render an SVG by using the test runne
 
 Unlike the simplified server render function, SVGDOM is bundled to allow DOM manipulation mirroring the DOM API found in the browser.
 
-We add some boilerplate at top of `render.ts` called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation. We have excluded the fontkit boilerplate for clarity, however where text elements are used this should be included.
+We add some boilerplate at top of [src/static/render.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/render.ts) called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation. We have excluded the fontkit boilerplate for clarity, however where text elements are used this should be included.
+
+The `storedParams` parameter will be provided as an object to the static diagram if user interaction has been added (see [Adding User Interaction](/quick-start-guide?id=adding-user-interaction)).
+
+-   [src/static/interface.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/interface.ts)
 
 ```javascript
-// interface.ts
-function render(params) {
-    return update(params);
+// storedParams is optional unless combining with interactive diagram with user interaction
+function render(params, storedParams) {
+    return update(params, storedParams);
 }
+```
 
-// update.js
-const { createSVGWindow, config } = require("./svgdom/main-module");
-const { SVG, registerWindow } = require("@svgdotjs/svg.js");
-import main_html from "./main.html"; // your html file.
+-   [src/static/render.ts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/static/render.ts)
+
+```javascript
+import { createSVGWindow } from "svgdom";
+import { SVG, registerWindow } from "@svgdotjs/svg.js";
+import main_html from "./main.html"; // your html file
 
 const windowObj = createSVGWindow();
 const documentObj = windowObj.document;
 
 registerWindow(windowObj, documentObj);
 const CANVAS = SVG(documentObj.documentElement);
-CANVAS.viewbox("0 0 500 100");
+CANVAS.viewbox("0 0 500 300");
 
 CANVAS.svg(main_html);
 
-export default function update(params) {
+export default function update(params, storedParams) {
     // DOM manipulation methods go here
     // e.g.
     SVG_ROOT.querySelector("#circle")?.setAttribute("fill", params.circleFill);
+
+    // Render from user interaction
+    if (!!storedParams?.circleBorder) {
+        SVG_ROOT!.querySelector("#circle")?.setAttribute("stroke", storedParams.circleBorder);
+    }
     // Always return the generated SVG string at the end of the update function.
     return CANVAS.svg();
 }
