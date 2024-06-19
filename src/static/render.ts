@@ -4,6 +4,10 @@ import { SVG, registerWindow } from "@svgdotjs/svg.js";
 import main_html from "./main.html";
 // @ts-ignore
 import logo_svg from "./assets/clearcalcs.svg";
+import {
+    ParamsResponse,
+    StoredParamsResponse,
+} from "../shared/ParamsInterface";
 
 const windowObj = createSVGWindow();
 const documentObj = windowObj.document;
@@ -20,23 +24,16 @@ logo_node.svg(logo_svg);
 
 const SVG_ROOT = documentObj.querySelector("svg");
 
-type Params = {
-    circleFill: string;
-    rectFill: string;
-    triangleFill: string;
-};
-
-type StoredParams = {
-    circleBorder: string;
-};
-
-const defaultParams: Params = {
+const defaultParams: ParamsResponse = {
     circleFill: "red",
     rectFill: "blue",
     triangleFill: "green",
 };
 
-export default function update(params?: Params, storedParams?: StoredParams) {
+export default function update(
+    params?: ParamsResponse,
+    storedParams?: StoredParamsResponse,
+) {
     const { circleFill, rectFill, triangleFill } = params || defaultParams;
     SVG_ROOT!.querySelector("#circle")?.setAttribute("fill", circleFill);
 

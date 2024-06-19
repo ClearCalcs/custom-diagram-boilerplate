@@ -1,3 +1,9 @@
+import {
+    ParamsResponse,
+    StoredParamsResponse,
+    paramsTypes,
+} from "../shared/ParamsInterface";
+
 export async function initialize(getStoredParams, setStoredParams) {
     // EXAMPLE (USER INTERACTION)
     /*
@@ -12,8 +18,8 @@ export async function initialize(getStoredParams, setStoredParams) {
     */
 }
 
-export async function render(params, getStoredParams) {
-    const storedParams = getStoredParams();
+export async function render(params: ParamsResponse, getStoredParams) {
+    const storedParams = getStoredParams() as StoredParamsResponse;
     if (!!params.circleFill) {
         document
             .getElementById("circle")
@@ -41,11 +47,7 @@ export async function render(params, getStoredParams) {
 }
 
 export async function params() {
-    return [
-        { key: "circleFill", type: "string" },
-        { key: "rectFill", type: "string" },
-        { key: "triangleFill", type: "string" },
-    ];
+    return paramsTypes;
 }
 
 export async function storedParams() {
