@@ -56,10 +56,30 @@ The compiled file is compatible with the server limitations above excluding, alt
 ### Included Packages
 
 -   SVGDOM - _[link](https://github.com/svgdotjs/svgdom)_ Render SVG DOM via
--   Fontkit _[link](https://github.com/foliojs/fontkit)_ browser build excluding file system APIs. Used by SVG DOM
 -   Buffer _[link](https://github.com/feross/buffer)_ browser build of NodeJS Buffer API
--   text-encoding _[link](https://github.com/inexorabletash/text-encoding)_ polyfill for TextEncoder/TextDecoder. Used by FontKit
 -   Typescript
+
+### SVG DOM Specific Restrictions
+
+SVGDOM and SVGDotJS functionality is generally supported. The following ClearCalcs specific limitations have been imposed:
+
+-   Raster images cannot determine their natural size, see _[link](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/naturalHeight)_.
+-   `getBBox` will provide bounding box dimensions assuming Google Open Sans Regular font _[link](https://fonts.google.com/specimen/Open+Sans)_.
+
+#### Add custom fonts (Experimental)
+
+Future compatibility is not guaranteed. It is recommended to contact ClearCalcs if intending to put this into production.
+
+1. Add ttf file to [svgdomPatches/scripts/fonts](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/svgdomPatches/scripts/fonts)
+2. Update [svgdomPatches/scripts/compileFont.js](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/svgdomPatches/scripts/compileFont.js) with new font name.
+3. Compile font into static asset
+
+```javascript
+npm run compile-static-fonts
+```
+
+3. Update [static-build.js](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/static-build.js) pointing to new font name.
+4. Update [svgdomPatches/scripts/textUtils.js](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/svgdomPatches/textUtils.js) pointing to new font name.
 
 ### Add your own packages
 
@@ -70,6 +90,30 @@ The server limitations on nodejs built-in modules, file system & network apply n
 When choosing a package, a version targeted for browsers may be available and more likely to work as the Isolate restrictions are similar to the browser restrictions.
 
 Test that the compiled file can be used to render an SVG by using the test runner, which works on the same server code, although your computer's local nodejs version may be different.
+
+### Custom Loaders
+
+The following assets can be imported into any file as [ESBuild text type](https://esbuild.github.io/content-types/#text)
+
+-   SVG
+-   HTML
+
+Other image or data formats may be possible by adding ES Build custom loaders. Consult ClearCalcs if custom loaders are required.
+
+A simple example of loading an external SVG.
+
+```javascript
+import logo_svg from "./assets/logo.svg";
+...
+// Encode SVG as SVGDOM object
+const logo_node = SVG();
+logo_node.svg(logo_svg);
+
+export default function update(params, storedParams) {
+    // DOM element should be available before this is called.
+    SVG_ROOT!.querySelector("#logo-container")?.appendChild(logo_node.node);
+}
+```
 
 ## Usage
 
