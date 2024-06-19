@@ -119,7 +119,7 @@ export default function update(params, storedParams) {
 
 Unlike the simplified server render function, SVGDOM is bundled to allow DOM manipulation mirroring the DOM API found in the browser.
 
-We add some boilerplate at top of `render.ts` called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation. We have excluded the fontkit boilerplate for clarity, however where text elements are used this should be included.
+We add some boilerplate at top of `render.ts` called by the `render()`. The author should use the SVGDOM primitives for `document` and `window` in place of the browser equivalents and generate an SVG string from the result of those object's manipulation.
 
 ```javascript
 // interface.ts
