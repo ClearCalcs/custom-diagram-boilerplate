@@ -33,7 +33,7 @@ The builder is a web-based calculator creator. All ClearCalcs calculators are ad
 
 </div>
 
-3. Upload `output/index.html` (interactive diagram) and/or `dist/compiled.js` (static diagram) into the ClearCalcs builder.
+3. Upload `output/index.html` (interactive diagram) and/or `output/compiled.js` (static diagram) into the ClearCalcs builder.
 4. Add values or references to other sheet widgets against each parameter
 
 ![Screenshot of the builder custom diagram editor](_media/about/builder-screenshot.png)
