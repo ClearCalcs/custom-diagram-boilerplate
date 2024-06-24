@@ -4,9 +4,26 @@
 
 Each interactive diagram has an execution lifecycle that is hidden away from the diagram creator. When a user navigates to a sheet with a custom diagram, the three phases begin with loading, initializing, then rendering.
 
-1. **loading**: HTML/CSS loaded and Javascript executed (imported dependencies, top-level code)
-2. **initializing**: [initialize()](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L1) executed, await return/resolve.
-3. **rendering**: [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L3) executed every time user changes params from sheet.
+### 1. Load
+
+The provided HTML markup and associated stylesheets are loaded into the DOM when a user opens a ClearCalcs calculator.
+
+### 2. Initialize
+
+The [initialize](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L7) function is called automatically once the first time the interactive diagram is loaded into a calculator.
+
+**Params**
+
+1. `getStoredParams(void): storedParams`: Function returning a list of storedParams. For a new sheet, this will be default values set up in the template. If a user has interacted with the diagram previously, this will return the values previously provided by `setStoredParams`
+2. `setStoredParams(newStoredParams): void`: Function expecting a list of storedParams. This will send the values to ClearCalcs to process and store.
+
+**Return**
+
+1. `Promise<void>`
+
+### 3. Render
+
+The [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L21) function is called automatically whenever ClearCalcs receives a new set of `params` or `storedParams`. The diagram creator should update the DOM inside this function.
 
 Any scripts, DOM elements or event listeners set up at the top-level of files, or inside of the `initialize` and `render` functions are maintained until the user navigates away from the sheet.
 
