@@ -33,7 +33,7 @@
         "docs": "cd docs && npm install && docsify serve -p 4444",
         "compile-static": "node static-build.js",
         "compile-static-fonts": "node svgdomPatches/scripts/compileFont.js",
-        "compile-interactive-example": "EXAMPLE_PATH=./examples/${EXAMPLE:-toggle-panels}/interactive/interface.ts parcel build examples/${EXAMPLE:-toggle-panels}/interactive/**/index.html"
+        "compile-interactive-example": "EXAMPLE_PATH=examples/${EXAMPLE}/interactive/interface.ts parcel build examples/${EXAMPLE}/interactive/**/index.html"
     },
     "type": "module"
 }
