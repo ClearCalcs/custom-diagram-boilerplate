@@ -12,18 +12,37 @@ The provided HTML markup and associated stylesheets are loaded into the DOM when
 
 The [initialize](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L7) function is called automatically once the first time the interactive diagram is loaded into a calculator.
 
-**Params**
+#### Use Cases
+
+-   Initialize third-party packages
+-   Data fetching e.g. GIS / CAD data
+-   any other async code that needs to run before `render` is called should be run here.
+-   Render initial state. This is useful where the diagram hasn't yet received any params e.g. builder's diagram widget.
+-   adding event listeners on user interaction e.g. click handlers.
+
+#### Params
 
 1. `getStoredParams(void): storedParams`: Function returning a list of storedParams. For a new sheet, this will be default values set up in the template. If a user has interacted with the diagram previously, this will return the values previously provided by `setStoredParams`
 2. `setStoredParams(newStoredParams): void`: Function expecting a list of storedParams. This will send the values to ClearCalcs to process and store.
 
-**Return**
+#### Return
+
+Return is optional. If using await or returning a Promise, `render` will not be called until these are fulfilled.
 
 1. `Promise<void>`
 
 ### 3. Render
 
 The [render(params)](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L21) function is called automatically whenever ClearCalcs receives a new set of `params` or `storedParams`. The diagram creator should update the DOM inside this function.
+
+**Params**
+
+1. `params`: Object containing all storedParams
+2. `getStoredParams(void): storedParams`; Function returning a list of storedParams.
+
+**Return**
+
+1. `Promise<void>`
 
 Any scripts, DOM elements or event listeners set up at the top-level of files, or inside of the `initialize` and `render` functions are maintained until the user navigates away from the sheet.
 
