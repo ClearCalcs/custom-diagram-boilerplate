@@ -10,19 +10,19 @@ The provided HTML markup and associated stylesheets are loaded into the DOM when
 
 ### 2. Initialize
 
-The [initialize](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L7) function is called automatically once the first time the interactive diagram is loaded into a calculator.
+The [initialize](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/src/interactive/interface.ts#L7) function is called automatically the first time the interactive diagram is loaded into a calculator.
 
 #### Use Cases
 
--   Initialize third-party packages
--   Data fetching e.g. GIS / CAD data
--   any other async code that needs to run before `render` is called should be run here.
--   Render initial state. This is useful where the diagram hasn't yet received any params e.g. builder's diagram widget.
--   adding event listeners on user interaction e.g. click handlers.
+-   Initializing third-party packages.
+-   Data fetching e.g. GIS / CAD data.
+-   Rendering initial state. This is useful where the diagram hasn't yet received any params e.g. builder's diagram widget.
+-   Event listeners on user interaction e.g. click handlers.
+-   Other async code that needs to run before `render` is called should be run here.
 
 #### Params
 
-1. `getStoredParams(void): storedParams`: Function returning a list of storedParams. For a new sheet, this will be default values set up in the template. If a user has interacted with the diagram previously, this will return the values previously provided by `setStoredParams`
+1. `getStoredParams(void): storedParams`: Function returning a list of storedParams. For a new sheet, this will be default values set up in the template. If a user has interacted with the diagram previously, this will return the values previously provided by `setStoredParams`.
 2. `setStoredParams(newStoredParams): void`: Function expecting a list of storedParams. This will send the values to ClearCalcs to process and store.
 
 #### Return
