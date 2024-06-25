@@ -25,6 +25,8 @@ The [initialize](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/m
 1. `getStoredParams(void): storedParams`: Function returning a list of storedParams. For a new sheet, this will be default values set up in the template. If a user has interacted with the diagram previously, this will return the values previously provided by `setStoredParams`.
 2. `setStoredParams(newStoredParams): void`: Function expecting a list of storedParams. This will send the values to ClearCalcs to process and store.
 
+For practical examples, see [Best Practices: Setting Stored Parameters](/interactive-diagram-best-practices?id=setting-stored-parameters)
+
 #### Return
 
 Return is optional. If using await or returning a Promise, `render` will not be called until these are fulfilled.
