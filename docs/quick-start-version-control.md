@@ -4,7 +4,7 @@ Development of public-facing diagrams should follow branch-based development fol
 
 Once the branch has been merged into `main`, a release of relevant file changes should be made.
 
-## Semantic versioning
+## Tagging
 
 Create a tag (_[link](https://git-scm.com/book/en/v2/Git-Basics-Tagging)_) following semantic versioning (_[link](https://semver.org/)_):
 
