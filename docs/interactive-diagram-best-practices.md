@@ -57,6 +57,47 @@ To run the above example, run the following command and upload the `output/index
 EXAMPLE=toggle-panels npm run compile-interactive-example
 ```
 
+## Setting Stored Parameters
+
+### Mental Modal
+
+Diagrams are rendered according to inputs from both params i.e. user interacting with upstream widgets, and storedParams i.e. user interacting with diagram itself.
+
+These updates will occur separately from each other and in some cases may have contradictory values.
+
+For example, below a user has made a selection on the diagram when there were 3 panels, but they then updated an upstream widget that changed the number of panels to 1. Their previously selected value no longer exists.
+
+The render in step 7 needs to handle the storedParams value of 2 no longer existing. In this example we can simply not render any selected element.
+
+<div style="text-align: center;">
+
+![Screenshot of simple user interaction](_media/interactive-diagram-best-practices/user-interaction-simple-flowchart.jpg)
+
+</div>
+
+### Setting storedParams that depends on previous values
+
+Although the rendering in the above example had to accommodate stale storedParams, it could set new values of storedParams by just overwriting the previous values i.e. not taking them into account.
+
+In the below more complex flowchart for the toggle-panels example [examples/toggle-panels](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/examples/toggle-panels), a user has selected panels 1 and 2. These are stored in an array containing the state of each rendered panel i.e. `[1, 1, 0]`.
+
+The user then changes the number of panels to be rendered in an upstream widget and then interacts with the diagram. To set the new array, the diagram needs to reconcile:
+
+1. currently rendered panel. This can be done by querying the DOM. e.g. panels = 1
+2. previous toggled states of panels. This can be done by reading `getStoredParams()` e.g. [1, 1, 0]
+
+The new result then needs to return a new array of toggled states that switches panel 1 and ignores the rest e.g. [0]
+
+<div style="text-align: center;">
+
+![Screenshot of complex user interaction](_media/interactive-diagram-best-practices/user-interaction-complex-flowchart.jpg)
+
+</div>
+
+The toggle-panels example provides examples of how to deal with this inter-dependency.
+
+?> Important: the `setStoredParams()` function should only ever be called in response to user interaction, never on `params` changing or other non-user initiated event.
+
 ## User Interaction UX
 
 ### Render Delay after Interaction
