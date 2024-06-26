@@ -61,6 +61,6 @@ npm run compile-interactive
 
 3. Create Release, see GitHub documentation (_[link](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)_)
 
-If only a static diagram or interactive diagram is updated, both assets should still be uploaded for compatibility.
+    If only a static diagram or interactive diagram is updated, both assets should still be uploaded for compatibility.
 
 4. Add release comments linking any relevant PRs.
