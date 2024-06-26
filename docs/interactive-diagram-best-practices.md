@@ -59,7 +59,7 @@ EXAMPLE=toggle-panels npm run compile-interactive-example
 
 ## Setting Stored Parameters
 
-### Mental Modal
+### Mental Model
 
 Diagrams are rendered according to inputs from both params i.e. user interacting with upstream widgets, and storedParams i.e. user interacting with diagram itself.
 
