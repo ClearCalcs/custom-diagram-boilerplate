@@ -35,9 +35,12 @@ When you make backward compatible bug fixes. For example:
 
 -   bug fix (no additional rendering features)
 
-### 4. Pre-release `vX.X.X-alpha/beta/rc1`
+### 4. Additional Labels `vX.X.X-alpha/beta/rc1`
 
 Additional labels for pre-release and build metadata are available as optional extensions. Use sparingly for smaller projects.
 
 -   Diagram used only in a `beta` template.
 
+## GitHub Releases
+
+Once a tag has been made, a Github Release (_[link](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)_) can be created against this tag with relevant compiled assets.
