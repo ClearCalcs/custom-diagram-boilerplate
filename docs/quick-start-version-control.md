@@ -43,4 +43,24 @@ Additional labels for pre-release and build metadata are available as optional e
 
 ## GitHub Releases
 
-Once a tag has been made, a Github Release (_[link](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)_) can be created against this tag with relevant compiled assets.
+Once a tag has been made, a Github Release can be created against this tag with relevant compiled assets.
+
+1. Parcel Cache may cause interactive diagram compiled html to not re-generate. Clear this via:
+
+```bash
+cd path/to/repository/folder
+rm -rf .parcel-cache/
+```
+
+2. Generate releases
+
+```bash
+npm run compile-static
+npm run compile-interactive
+```
+
+3. Upload assets to GitHub release page, see GitHub Releases (_[link](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)_)
+
+If only a static diagram or interactive diagram is updated, both assets should still be uploaded for compatibility.
+
+4. Add release comments linking any relevant PRs.
