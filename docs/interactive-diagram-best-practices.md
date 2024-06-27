@@ -59,7 +59,7 @@ EXAMPLE=toggle-panels npm run compile-interactive-example
 
 ## Setting Stored Parameters
 
-### Mental Modal
+### Mental Model
 
 Diagrams are rendered according to inputs from both params i.e. user interacting with upstream widgets, and storedParams i.e. user interacting with diagram itself.
 
@@ -98,3 +98,56 @@ The toggle-panels example provides examples of how to deal with this inter-depen
 
 ?> Important: the `setStoredParams()` function should only ever be called in response to user interaction, never on `params` changing or other non-user initiated event.
 
+## UX Considerations
+
+### Render Delay after Interaction
+
+ClearCalcs manages the timing of receiving user interaction data and calling render. There is a minor delay where ClearCalcs receives the serialized message from the Interactive Diagram's iframes, stores its value and sends another message with all the `params` and the newly updated `storedParams` for the diagram to render.
+
+The delay may vary based on a number of factors:
+
+-   diagram sends/receives large chunks of data.
+-   client is busy performing other computations e.g. solving other maths on the calculator.
+-   client is on a low power device.
+-   ClearCalcs needs to perform server-side computations to re-calculate `params`.
+
+Below is a simple flow showing a number being clicked and changing its colour to blue. The number may show a delayed switch to blue, but this behaviour is acceptable. There is a minor risk, if the diagram is particularly complex, that the user may try to click again before render is called again. Some advanced strategies are presented in [Handling Duplicate Interactions](/interactive-diagram-best-practices?id=handle-multiple-events).
+
+<div style="text-align: center;">
+
+![Screenshot of user diagram](_media/interactive-diagram-best-practices/user-interaction-simple-states.png)
+
+</div>
+
+#### Optimistic Render
+
+Below is an example of a complex user-interaction that may require strategies to mitigate the number 2 jumping back to its original position at the end of the drag, even if the delay is very short.
+
+This may be achieved by optimistically updating the DOM state within the [dragend](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event) handler. Some best practices:
+
+-   DOM elements created in event handler should be completely removed at next render.
+-   Consider marking optimistic state differently to final state. e.g. light grey, loading spinner. If ClearCalcs fails to calculate, the diagram may never receive the next render.
+-   If `storedParams` affect `params` consider showing some optimistic state for that as well. e.g. dimension lines to numbers 1 and 2 are calculated and passed back through `params`.
+
+<div style="text-align: center;">
+
+![Screenshot of user diagram](_media/interactive-diagram-best-practices/user-interaction-complex-states.png)
+
+</div>
+
+#### Handle multiple events
+
+In [examples/toggle-panels](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/examples/toggle-panels), a user can click on multiple panels and the toggle state of every panel is stored in an array. If a user clicks on a 2nd panel while ClearCalcs is still processing the 1st array received from the diagram, the storedParams from the first click may be lost.
+
+The reason for this is that `getStoredParams` function is not instantly updated as soon as `setStoredParams` is called, rather only after ClearCalcs has finished processing and calls render again. Any user interactions in the meantime will get the `storedParams` i.e. before the click/drag event. See flowchart:
+
+<div style="text-align: center;">
+
+![Screenshot of user interacting multiple times](_media/interactive-diagram-best-practices/user-interaction-multiple-events.png)
+
+</div>
+
+There are some advanced techniques to mitigate these issues, to be used with caution:
+
+-   prevent user interaction until render has been called.
+-   use DOM state rather than `getStoredParams` to calculate new `storedParams`.
