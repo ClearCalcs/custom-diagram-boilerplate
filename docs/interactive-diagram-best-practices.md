@@ -98,7 +98,7 @@ The toggle-panels example provides examples of how to deal with this inter-depen
 
 ?> Important: the `setStoredParams()` function should only ever be called in response to user interaction, never on `params` changing or other non-user initiated event.
 
-## User Interaction UX
+## UX Considerations
 
 ### Render Delay after Interaction
 
@@ -111,7 +111,7 @@ The delay may vary based on a number of factors:
 -   client is on a low power device.
 -   ClearCalcs needs to perform server-side computations to re-calculate `params`.
 
-Below is a simple flow showing a number being clicked and changing its colour to blue. The number may show a delayed switch to blue, but this behaviour is acceptable. There is a minor risk, if the diagram is particularly complex, that the user may try to click again before render is called again. Some advanced strategies are presented in [Handling Duplicate Interactions](/interactive-diagram-best-practices?id=handle-multiple-events)
+Below is a simple flow showing a number being clicked and changing its colour to blue. The number may show a delayed switch to blue, but this behaviour is acceptable. There is a minor risk, if the diagram is particularly complex, that the user may try to click again before render is called again. Some advanced strategies are presented in [Handling Duplicate Interactions](/interactive-diagram-best-practices?id=handle-multiple-events).
 
 <div style="text-align: center;">
 
@@ -137,7 +137,17 @@ This may be achieved by optimistically updating the DOM state within the [dragen
 
 #### Handle multiple events
 
-During the time that ClearCalcs is processing params, the `getStoredParams` function will still return the old values of `storedParams` i.e. before the click/drag event. That means if multiple events happen in quick succession, then a queue of `setStoredParams` may form each being unaware of its other changes. There are some advanced techniques to mitigate these issues, to be used with caution:
+In [examples/toggle-panels](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/examples/toggle-panels), a user can click on multiple panels and the toggle state of every panel is stored in an array. If a user interacts clicks on a 2nd panel while ClearCalcs is still processing the 1st array received from the diagram, the storedParams from the first click may be lost.
+
+The reason for this is that `getStoredParams` function is not instantly updated as soon as `setStoredParams` is called, rather only after Cleasrcalcs has finished processing and calls render again. Any user interactions in the meantime will get the `storedParams` i.e. before the click/drag event. See flowchart:
+
+<div style="text-align: center;">
+
+![Screenshot of user interacting multiple times](_media/interactive-diagram-best-practices/user-interaction-multiple-events.png)
+
+</div>
+
+There are some advanced techniques to mitigate these issues, to be used with caution:
 
 -   prevent user interaction until render has been called.
--   use DOM state rather than `getStoredParams` to calculated new `storedParams`.
+-   use DOM state rather than `getStoredParams` to calculate new `storedParams`.
