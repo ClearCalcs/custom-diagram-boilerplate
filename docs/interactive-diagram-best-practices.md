@@ -137,9 +137,9 @@ This may be achieved by optimistically updating the DOM state within the [dragen
 
 #### Handle multiple events
 
-In [examples/toggle-panels](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/examples/toggle-panels), a user can click on multiple panels and the toggle state of every panel is stored in an array. If a user interacts clicks on a 2nd panel while ClearCalcs is still processing the 1st array received from the diagram, the storedParams from the first click may be lost.
+In [examples/toggle-panels](https://github.com/ClearCalcs/custom-diagram-boilerplate/blob/main/examples/toggle-panels), a user can click on multiple panels and the toggle state of every panel is stored in an array. If a user clicks on a 2nd panel while ClearCalcs is still processing the 1st array received from the diagram, the storedParams from the first click may be lost.
 
-The reason for this is that `getStoredParams` function is not instantly updated as soon as `setStoredParams` is called, rather only after Cleasrcalcs has finished processing and calls render again. Any user interactions in the meantime will get the `storedParams` i.e. before the click/drag event. See flowchart:
+The reason for this is that `getStoredParams` function is not instantly updated as soon as `setStoredParams` is called, rather only after ClearCalcs has finished processing and calls render again. Any user interactions in the meantime will get the `storedParams` i.e. before the click/drag event. See flowchart:
 
 <div style="text-align: center;">
 
