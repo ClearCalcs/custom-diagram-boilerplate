@@ -28,3 +28,22 @@ Full screen active:
 ![Screenshot of lightbox activated](_media/global-capabilities/global-capabilities-lightbox-active.png ":size=600")
 
 </div>
+
+### Rendering based on Viewport Width
+
+It is desirable that elements look appropriate to the viewport size they are rendered in.
+Pure CSS approaches to adjust rendering based on viewport size should be used, as javascript e.g. `render()` method will not be re-run with viewport changes.
+
+For example SVG text elements can be targetted inside a media query:
+
+```css
+text {
+    font-size: 1em;
+}
+
+@media (min-width: 600px) {
+    text {
+        font-size: 0.8em;
+    }
+}
+```

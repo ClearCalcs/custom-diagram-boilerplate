@@ -29,6 +29,12 @@ The custom diagram is rendered in 4 distinct arrangements:
 
 ### Lightbox View
 
+<div style="text-align: center;">
+
+![Standard](_media/static-diagram-rendering/lightbox-scaling-text.png ":size=400")
+
+</div>
+
 |           |                        |
 | --------- | ---------------------- |
 | Width     | Viewport Width         |

@@ -32,9 +32,25 @@
         #triangle {
             transition: fill 1s;
         }
+
+        text {
+            font-size: 1em;
+        }
+
+        @media (min-width: 600px) {
+            text {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            text {
+                font-size: 0.5em;
+            }
+        }
     </style>
     <g id="clearcalcs-logo" transform="scale(0.5) translate(100 -50)"></g>
-    <text x="50" y="100" font-family="Verdana" font-size="16" fill="black">
+    <text x="50" y="100" font-family="Verdana" fill="black">
         Welcome to the Static Diagram
     </text>
     <circle id="circle" cx="250" cy="175" r="50" fill="#ddd" stroke-width="3" />
@@ -42,7 +58,7 @@
     <svg x="300" y="125">
         <polygon id="triangle" points="50 0, 100 100, 0 100" fill="#ddd" />
     </svg>
-    <text x="50" y="250" font-family="Verdana" font-size="16" fill="black">
+    <text x="50" y="250" font-family="Verdana" fill="black">
         Get started by reading the docs:
     </text>
     <!-- This link will not work as SVG rendered as Image in Sheet View -->
