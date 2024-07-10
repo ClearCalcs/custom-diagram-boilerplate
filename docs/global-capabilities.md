@@ -4,13 +4,13 @@ The Custom Diagram engine has several time saving features that will be directly
 
 ## Zoom & Pan
 
-All custom diagrams have zoom controls provided below the diagram that allows the user to zoom in and out and pan around in sheet view and [Lightbox](/global-capabilities?id=lightbox) view.
+All custom diagrams have zoom controls provided below the diagram that allows the user to and pan. This behaviour can be used both in standard calculator view and within a full-screen [Lightbox](/global-capabilities?id=lightbox).
 
-When zoom mode is activated by the user, a tranform is applied to the original SVG with `transform-origin: 0 0` with a `transform: scale([some percentage])`. The transform scale approach ensures maximum compatibility with all SVGs, where every element (e.g. text, stroke-widths and paddings) of the diagram is scaled proportionally from the top-left corner of the diagram as shown below:
+When a user zooms the diagram, a transform is applied to the original SVG with `transform-origin: 0 0` and `transform: scale([some percentage])`. Every element (e.g. text, stroke-widths and paddings) of the diagram is scaled proportionally from the top-left corner of the diagram as shown below:
 
 <div style="text-align: center;">
 
-![Screenshot of the builder preset editor interactive diagram](_media/global-capabilities/global-capabilities-zoom.png ":size=400")
+![Screenshot of a zoomed diagram](_media/global-capabilities/global-capabilities-zoom.png ":size=400")
 
 </div>
 
