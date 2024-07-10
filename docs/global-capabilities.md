@@ -11,7 +11,7 @@ This feature is still in development.
 
 ## Lightbox
 
-The diagram may be rendered in full screen mode ([_link_](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)). This allows the user to view the diagram should be developed to scale effectively to larger viewports.
+The diagram may be rendered in full screen mode ([_link_](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)). A button is provided at the bottom-right corner as shown below:
 
 Toggle full screen mode:
 
