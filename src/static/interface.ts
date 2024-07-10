@@ -5,10 +5,13 @@ import {
 } from "../shared/ParamsInterface";
 import update from "./render";
 
-render = function (params: ParamsResponse, storedParams: StoredParamsResponse) {
+export const render = function (
+    params: ParamsResponse,
+    storedParams: StoredParamsResponse,
+) {
     return update(params, storedParams);
 };
 
-params = function () {
+export const params = function () {
     return paramsTypes;
 };
