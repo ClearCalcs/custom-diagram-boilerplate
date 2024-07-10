@@ -1,8 +1,9 @@
 # Rendering
 
-The custom diagram is rendered in 3 distinct arrangements:
+The custom diagram is rendered in 4 distinct arrangements:
 
 -   Sheet View
+-   Lightbox View, see [Global Capabilities: Lightbox](/global-capabilities?id=lightbox)
 -   One-Page print mode
 -   Standard print mode
 
@@ -25,6 +26,16 @@ The custom diagram is rendered in 3 distinct arrangements:
 | Margins   | 0px                          |
 | Centering | None                         |
 | Format    | SVG                          |
+
+### Lightbox View
+
+|           |                        |
+| --------- | ---------------------- |
+| Width     | Viewport Width         |
+| Height    | Preserves aspect ratio |
+| Margins   | 0px                    |
+| Centering | None                   |
+| Format    | SVG                    |
 
 ### Standard Print
 

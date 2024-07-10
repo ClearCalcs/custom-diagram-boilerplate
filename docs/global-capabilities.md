@@ -11,7 +11,20 @@ This feature is still in development.
 
 ## Lightbox
 
-The diagram is rendered in a larger window on the user's browser where toggled by the user. Diagrams should be developed to scale effectively to larger viewports i.e. do not use fixed `height` `width` properties on the SVG.
+The diagram may be rendered in full screen mode ([_link_](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)). This allows the user to view the diagram should be developed to scale effectively to larger viewports.
 
-![Under construction](_media/under_construction_icon.svg ":size=50")
-This feature is still in development.
+Toggle full screen mode:
+
+<div style="text-align: center;">
+
+![Screenshot of lightbox option on diagram](_media/global-capabilities/global-capabilities-lightbox-button.png ":size=400")
+
+</div>
+
+Full screen active:
+
+<div style="text-align: center;">
+
+![Screenshot of lightbox activated](_media/global-capabilities/global-capabilities-lightbox-active.png ":size=600")
+
+</div>
