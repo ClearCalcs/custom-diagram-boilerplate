@@ -31,7 +31,7 @@ The custom diagram is rendered in 4 distinct arrangements:
 
 <div style="text-align: center;">
 
-![Standard](_media/static-diagram-rendering/lightbox-scaling-text.png ":size=400")
+![Standard](_media/static-diagram-rendering/fullscreen-scaling-text.png ":size=400")
 
 </div>
 

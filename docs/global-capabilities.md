@@ -17,7 +17,7 @@ Toggle full screen mode:
 
 <div style="text-align: center;">
 
-![Screenshot of lightbox option on diagram](_media/global-capabilities/global-capabilities-lightbox-button.png ":size=400")
+![Screenshot of lightbox option on diagram](_media/global-capabilities/global-capabilities-fullscreen-button.png ":size=400")
 
 </div>
 
@@ -25,7 +25,7 @@ Full screen active:
 
 <div style="text-align: center;">
 
-![Screenshot of lightbox activated](_media/global-capabilities/global-capabilities-lightbox-active.png ":size=600")
+![Screenshot of lightbox activated](_media/global-capabilities/global-capabilities-fullscreen-active.png ":size=600")
 
 </div>
 
