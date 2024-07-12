@@ -31,7 +31,39 @@ When a user zooms the diagram, a transform is applied to the original SVG with `
 
 ## Full Screen
 
-The diagram is rendered in a larger window on the user's browser where toggled by the user. Diagrams should be developed to scale effectively to larger viewports i.e. do not use fixed `height` `width` properties on the SVG.
+The diagram may be rendered in full screen mode ([_link_](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)). A button is provided at the bottom-right corner as shown below:
 
-![Under construction](_media/under_construction_icon.svg ":size=50")
-This feature is still in development.
+Toggle full screen mode:
+
+<div style="text-align: center;">
+
+![Screenshot of full screen option on diagram](_media/global-capabilities/global-capabilities-fullscreen-button.png ":size=400")
+
+</div>
+
+Full screen active:
+
+<div style="text-align: center;">
+
+![Screenshot of full screen activated](_media/global-capabilities/global-capabilities-fullscreen-active.png ":size=600")
+
+</div>
+
+### Rendering based on Viewport Width
+
+It is desirable that elements look appropriate to the viewport size they are rendered in.
+Pure CSS approaches to adjust rendering based on viewport size should be used, as javascript e.g. `render()` method will not be re-run with viewport changes.
+
+For example SVG text elements can be targetted inside a media query:
+
+```css
+text {
+    font-size: 1em;
+}
+
+@media (min-width: 600px) {
+    text {
+        font-size: 0.8em;
+    }
+}
+```
