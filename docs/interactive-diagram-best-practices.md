@@ -14,7 +14,7 @@ Event Listeners should be set up in the `initialize` function, which behaves sim
 -   Do not add listeners for:
     -   `mousemove`/`mouseover`: These may fire rapidly. This will cause poor performance, particularly where `storedParams` are modified on each event. Consider css only approaches.
     -   `scroll`/`scrollend`/`auxclick`: these are utilised by ClearCalcs [Zoom](/global-capabilities?id=zoom-amp-pan).
-    -   `keydown`/`keyup` e.g. `Escape` are utilised by ClearCalcs [Lightbox](/global-capabilities?id=lightbox)
+    -   `keydown`/`keyup` e.g. `Escape` are utilised by ClearCalcs [Full Screen](/global-capabilities?id=full-screen)
     -   `focus`/`blur`: Consider css only approach
     -   `load`: Since the `initialize` function runs on load it performs the same role.
 
