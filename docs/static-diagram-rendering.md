@@ -3,7 +3,7 @@
 The custom diagram is rendered in 4 distinct arrangements:
 
 -   Sheet View
--   Lightbox View, see [Global Capabilities: Lightbox](/global-capabilities?id=lightbox)
+-   Full Screen View, see [Global Capabilities: Full Screen](/global-capabilities?id=full-screen)
 -   One-Page print mode
 -   Standard print mode
 
@@ -27,7 +27,7 @@ The custom diagram is rendered in 4 distinct arrangements:
 | Centering | None                         |
 | Format    | SVG                          |
 
-### Lightbox View
+### Full Screen View
 
 <div style="text-align: center;">
 
