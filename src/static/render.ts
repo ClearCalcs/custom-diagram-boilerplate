@@ -1,5 +1,4 @@
 import { createSVGWindow } from "svgdom";
-import { SVG, registerWindow } from "@svgdotjs/svg.js";
 import main_html from "./main.html";
 import logo_svg from "./assets/clearcalcs.svg";
 import {
@@ -7,20 +6,14 @@ import {
     StoredParamsResponse,
 } from "../shared/ParamsInterface";
 
-const windowObj = createSVGWindow();
-const documentObj = windowObj.document;
+// returns a window with a document and an svg root node (documentElement)
+const window = createSVGWindow();
+const svg = window.document.documentElement as SVGSVGElement;
+svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+svg.setAttribute("version", "1.1");
+svg.setAttribute("viewBox", "0 0 500 300");
 
-registerWindow(windowObj, documentObj);
-
-const CANVAS = SVG(documentObj.documentElement as SVGSVGElement);
-
-CANVAS.viewbox("0 0 500 300");
-CANVAS.svg(main_html);
-
-const logo_node = SVG();
-logo_node.svg(logo_svg);
-
-const SVG_ROOT = documentObj.querySelector("svg");
+svg.innerHTML = main_html;
 
 const defaultParams: ParamsResponse = {
     circleFill: "red",
@@ -33,15 +26,15 @@ export default function update(
     storedParams?: StoredParamsResponse,
 ) {
     const { circleFill, rectFill, triangleFill } = params || defaultParams;
-    SVG_ROOT!.querySelector("#circle")?.setAttribute("fill", circleFill);
+    svg.querySelector("#circle")?.setAttribute("fill", circleFill);
 
-    SVG_ROOT!.querySelector("#rect")?.setAttribute("fill", rectFill);
+    svg.querySelector("#rect")?.setAttribute("fill", rectFill);
 
-    SVG_ROOT!.querySelector("#triangle")?.setAttribute("fill", triangleFill);
-    SVG_ROOT!.querySelector("#clearcalcs-logo")?.appendChild(logo_node.node);
+    svg.querySelector("#triangle")?.setAttribute("fill", triangleFill);
+    svg.querySelector("#clearcalcs-logo")!.innerHTML = logo_svg;
     // // EXAMPLE (FROM USER INTERACTION)
     // if (!!storedParams?.circleBorder) {
-    //     SVG_ROOT!.querySelector("#circle")?.setAttribute("stroke", storedParams.circleBorder);
+    //     svg.querySelector("#circle")?.setAttribute("stroke", storedParams.circleBorder);
     // }
-    return CANVAS.svg();
+    return svg.outerHTML;
 }
