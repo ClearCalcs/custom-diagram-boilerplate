@@ -1,5 +1,4 @@
 import { createSVGWindow } from "svgdom";
-import { SVG, registerWindow } from "@svgdotjs/svg.js";
 import main_html from "./main.html";
 import logo_svg from "./assets/clearcalcs.svg";
 import {
@@ -8,19 +7,20 @@ import {
 } from "../shared/ParamsInterface";
 
 const windowObj = createSVGWindow();
-const documentObj = windowObj.document;
+const SVG_ROOT = windowObj.document.documentElement as SVGSVGElement;
 
-registerWindow(windowObj, documentObj);
+// Append the main html to the SVG root
+SVG_ROOT.innerHTML = main_html;
 
-const CANVAS = SVG(documentObj.documentElement as SVGSVGElement);
+// We want to merge the attributes of the first child from main_html file,
+// into the SVG element provided by the SVGDOM library, SVG_ROOT.
+// This allows us to merge the 2 nested SVG elements into 1
+// and resolves issues with Weasyprint sizing nested SVGs incorrectly.
+(SVG_ROOT.children[0] as any).attrs?.forEach((attr) => {
+    SVG_ROOT.setAttribute(attr.name, attr.value);
+});
 
-CANVAS.viewbox("0 0 500 300");
-CANVAS.svg(main_html);
-
-const logo_node = SVG();
-logo_node.svg(logo_svg);
-
-const SVG_ROOT = documentObj.querySelector("svg");
+SVG_ROOT.innerHTML = SVG_ROOT.children[0].innerHTML;
 
 const defaultParams: ParamsResponse = {
     circleFill: "red",
@@ -38,10 +38,10 @@ export default function update(
     SVG_ROOT!.querySelector("#rect")?.setAttribute("fill", rectFill);
 
     SVG_ROOT!.querySelector("#triangle")?.setAttribute("fill", triangleFill);
-    SVG_ROOT!.querySelector("#clearcalcs-logo")?.appendChild(logo_node.node);
+    SVG_ROOT!.querySelector("#clearcalcs-logo")!.innerHTML = logo_svg;
     // // EXAMPLE (FROM USER INTERACTION)
     // if (!!storedParams?.circleBorder) {
     //     SVG_ROOT!.querySelector("#circle")?.setAttribute("stroke", storedParams.circleBorder);
     // }
-    return CANVAS.svg();
+    return SVG_ROOT.outerHTML;
 }
