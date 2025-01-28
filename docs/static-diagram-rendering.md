@@ -1,8 +1,9 @@
 # Rendering
 
-The custom diagram is rendered in 3 distinct arrangements:
+The custom diagram is rendered in 4 distinct arrangements:
 
 -   Sheet View
+-   Full Screen View, see [Global Capabilities: Full Screen](/global-capabilities?id=full-screen)
 -   One-Page print mode
 -   Standard print mode
 
@@ -25,6 +26,22 @@ The custom diagram is rendered in 3 distinct arrangements:
 | Margins   | 0px                          |
 | Centering | None                         |
 | Format    | SVG                          |
+
+### Full Screen View
+
+<div style="text-align: center;">
+
+![Standard](_media/static-diagram-rendering/fullscreen-scaling-text.png ":size=400")
+
+</div>
+
+|           |                        |
+| --------- | ---------------------- |
+| Width     | Viewport Width         |
+| Height    | Preserves aspect ratio |
+| Margins   | 0px                    |
+| Centering | None                   |
+| Format    | SVG                    |
 
 ### Standard Print
 
