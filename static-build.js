@@ -95,6 +95,14 @@ try {
         mainFields: ["module", "main"],
         platform: "neutral",
         format: "iife",
+        // The iife format does not expose exports out of the entrypoint file
+        // We need the render and params methods to be exposed at the top level
+        // We can assign a name to the iife and pull them out from there.
+        // https://github.com/evanw/esbuild/issues/2277
+        globalName: "myDiagram",
+        footer: {
+            js: "var render = myDiagram.render; var params = myDiagram.params",
+        },
         // TS declarations in custom.d.ts should be sync'ed with loaders
         loader: {
             ".html": "text",

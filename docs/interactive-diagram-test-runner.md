@@ -6,6 +6,8 @@ The Test Runner allows visualisation of the custom interactive diagram and how i
 
 It allows this compatibility by running the diagram code within a fake ClearCalcs app that has the same capabilities and restrictions. The following diagram functionality may be tested:
 
+### Supported Features
+
 -   renders initial visual state without parameters
 -   updates visual state after render() called
 -   returns expected parameters after params() called
@@ -13,6 +15,15 @@ It allows this compatibility by running the diagram code within a fake ClearCalc
 -   returns error response when timing out or throwing an error.
 
 ![Screenshot of the Test Runner](_media/quick-start-guide/testing-server.png)
+
+### Unsupported Features
+
+User interaction is currently not supported in the test runner. The following limitations are present when loading a diagram expecting user interaction:
+
+-   `getStoredParams()` will return an empty object.
+-   `setStoredParams()` will not update storedParams, and render will not be fired automatically.
+
+User interaction may be tested by compiling and uploading the diagram to the builder. For detailed instructions, see [Using in ClearCalcs](/using-in-clearcalcs).
 
 ## Set up
 

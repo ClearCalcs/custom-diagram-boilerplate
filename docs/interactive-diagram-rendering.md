@@ -14,3 +14,9 @@ For specific browser restrictions, see [Mozilla docs](https://developer.mozilla.
 -   no modals e.g. `window.alert`
 -   no popups e.g. `<a target="_blank">`. User should use middle-button to open link in new tab
 -   no access to parent DOM
+
+## Rendering based on Viewport Width
+
+Diagrams may be rendered in column widths between 380 to 800 px, or in full screen covering the full viewport of the user.
+
+Techniques for rendering size and position for larger viewport widths are provided in [Global Capabilities: Full Screen](/global-capabilities?id=full-screen).
