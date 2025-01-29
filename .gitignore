@@ -7,3 +7,6 @@ output/
 *.log
 package-lock.json
 yarn.lock
+
+# Test files
+test/out/
