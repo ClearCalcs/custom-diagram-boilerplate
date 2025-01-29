@@ -1,0 +1,14 @@
+services:
+    render:
+        build:
+            context: .
+        command: node -e 'import("./test.js").then(m => m.render())'
+        volumes:
+            - ./test/out:/var/task/out
+
+    params:
+        build:
+            context: .
+        command: node -e 'import("./test.js").then(m => m.params())'
+        volumes:
+            - ./test/out:/var/task/out

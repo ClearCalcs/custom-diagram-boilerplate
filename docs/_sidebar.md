@@ -9,8 +9,10 @@
     -   [Core](/interactive-diagram-core "Understand the underlying technology and API for rendering the interactive diagrams")
     -   [Rendering](/interactive-diagram-rendering "How interactive diagrams are rendered in the sheet")
     -   [Best Practices](/interactive-diagram-best-practices "Best Practices for using interactive diagram")
-    -   [Using Test Runner](/interactive-diagram-test-runner "How to use the test runner")
 -   Global
     -   [Global Capabilities](/global-capabilities "Time saving features")
+-   Testing
+    -   [Interactive](/interactive-diagram-test-runner "How to use the test runner")
+    -   [Static](/static-diagram-test-runner "How to use the test runner")
 -   Contributing
     -   [Add To Docs](/contributing-to-docs "How to contribute to docs")
