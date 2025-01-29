@@ -3,12 +3,12 @@
     "version": "0.1.0",
     "private": true,
     "devDependencies": {
-        "@parcel/optimizer-data-url": "2.9.3",
-        "@parcel/transformer-inline-string": "2.9.3",
-        "@parcel/transformer-sass": "2.9.3",
+        "@parcel/transformer-sass": "2.12.0",
+        "@parcel/optimizer-data-url": "2.12.0",
+        "@parcel/transformer-inline-string": "2.12.0",
         "@parcel/core": "2.9.3",
-        "parcel": "2.9.3",
-        "posthtml-include": "1.7.4",
+        "posthtml-include": "2.0.1",
+        "parcel": "2.12.0",
         "esbuild": "^0.18.17",
         "svgdom": "^0.1.14",
         "@types/svgdom": "^0.1.2",
@@ -32,7 +32,9 @@
         "docs": "cd docs && npm install && docsify serve -p 4444",
         "compile-static": "node static-build.js",
         "compile-static-fonts": "node svgdomPatches/scripts/compileFont.js",
-        "compile-interactive-example": "EXAMPLE_PATH=examples/${EXAMPLE}/interactive/interface.ts parcel build examples/${EXAMPLE}/interactive/**/index.html"
+        "compile-interactive-example": "EXAMPLE_PATH=examples/${EXAMPLE}/interactive/interface.ts parcel build examples/${EXAMPLE}/interactive/**/index.html",
+        "test-render": "npm run compile-static && docker compose build && docker compose up render",
+        "test-params": "npm run compile-static && docker compose build && docker compose up params"
     },
     "type": "module"
 }
