@@ -19,9 +19,9 @@ export const render = withErrorHandling(async ({ params }) => {
         encoding: "utf8",
         flag: "r",
     });
-    let storedParams, inParams;
+    let storedParams, diagramType, inParams;
     try {
-        ({ storedParams, ...inParams } = params);
+        ({ storedParams, diagramType, ...inParams } = params);
     } catch (e) {
         // User has called render with no params or not with an object
         // We will pass down the original params and handle error in user code
@@ -29,8 +29,10 @@ export const render = withErrorHandling(async ({ params }) => {
 
     return runInSandbox({
         userCode,
-        resultCode: "return render($0,$1)",
-        params: inParams ? [inParams, storedParams] : [params, {}],
+        resultCode: "return render($0,$1,$2)",
+        params: inParams
+            ? [inParams, storedParams, diagramType]
+            : [params, {}, diagramType],
     });
 });
 
