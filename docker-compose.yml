@@ -2,7 +2,12 @@ services:
     render:
         build:
             context: .
-        command: node -e 'import("./test.js").then(m => m.render())' && echo "$(cat out/diagram.svg)" | weasyprint - out/output.pdf
+        command: 
+            - /bin/bash
+            - -c
+            - |
+                node -e 'import("./test.js").then(m => m.render())'
+                cat out/diagram.svg | weasyprint - out/output.pdf
         volumes:
             - ./test/out:/var/task/out
 
