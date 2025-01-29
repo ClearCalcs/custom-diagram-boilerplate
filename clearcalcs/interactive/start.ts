@@ -59,10 +59,10 @@ export default async function start() {
                     );
                 }
 
-                let storedParams, params;
+                let storedParams, diagramType, params;
 
                 if (data) {
-                    ({ storedParams, ...params } = data);
+                    ({ storedParams, diagramType, ...params } = data);
                     // Has never been set before or invalid data
                     if (typeof storedParams !== "object") {
                         storedParams = {};
@@ -82,6 +82,7 @@ export default async function start() {
                             null,
                             params,
                             storedParamsInterface.getStoredParams,
+                            diagramType,
                         ),
                     );
                     window.parent.postMessage(

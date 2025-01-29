@@ -1,8 +1,5 @@
-import {
-    ParamsResponse,
-    StoredParamsResponse,
-    paramsTypes,
-} from "../shared/ParamsInterface";
+import { ParamsResponse, paramsTypes } from "../shared/ParamsInterface";
+import update from "./render";
 
 export async function initialize(getStoredParams, setStoredParams) {
     // EXAMPLE (USER INTERACTION)
@@ -18,36 +15,27 @@ export async function initialize(getStoredParams, setStoredParams) {
     */
 }
 
-export async function render(params: ParamsResponse, getStoredParams) {
-    const storedParams = getStoredParams() as StoredParamsResponse;
-    if (!!params.circleFill) {
-        document
-            .getElementById("circle")
-            ?.setAttribute("fill", params.circleFill);
-    }
+export async function render(
+    params: ParamsResponse,
+    getStoredParams,
+    diagramType?: string,
+) {
+    return update(params, getStoredParams);
 
-    if (!!params.rectFill) {
-        document.getElementById("rect")?.setAttribute("fill", params.rectFill);
-    }
-
-    if (!!params.triangleFill) {
-        document
-            .getElementById("triangle")
-            ?.setAttribute("fill", params.triangleFill);
-    }
-
-    // EXAMPLE (USER INTERACTION)
-    /*
-    if (!!storedParams.circleBorder) {
-        document
-            .getElementById("circle")
-            ?.setAttribute("stroke", storedParams.circleBorder);
-    }
-    */
+    // // EXAMPLE (Multiple diagram types)
+    // switch (diagramType) {
+    //     case "type1":
+    //         return update(params, getStoredParams);
+    //     default:
+    //         return null;
+    // }
 }
 
 export async function params() {
     return paramsTypes;
+
+    // // EXAMPLE (Multiple diagram types)
+    // return { type1: paramsTypes };
 }
 
 export async function storedParams() {
@@ -55,4 +43,7 @@ export async function storedParams() {
         // // EXAMPLE (USER INTERACTION)
         // { key: "circleBorder", type: "string" }
     ];
+
+    // // EXAMPLE (Multiple diagram types)
+    // return { type1: [{ key: "circleBorder", type: "string" }] };
 }
