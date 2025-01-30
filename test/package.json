@@ -8,5 +8,21 @@
     "dependencies": {
         "isolated-vm": "^5.0.3"
     },
+    "//": "Using alpha version because of jest v30.0.0 alpha which has resolved isolated-vm with experimental-vm-modules https://github.com/jestjs/jest/issues/14156",
+    "devDependencies": {
+        "jest": "^30.0.0-alpha.6",
+        "jsdom": "26.0.0",
+        "prettier": "3.4.2"
+    },
+    "scripts": {
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    },
+    "jest": {
+        "testPathIgnorePatterns": [
+            "./node_modules/",
+            "./test.js"
+        ],
+        "transform": {}
+    },
     "type": "module"
 }

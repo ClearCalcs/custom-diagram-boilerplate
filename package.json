@@ -35,6 +35,7 @@
         "compile-static-fonts": "node svgdomPatches/scripts/compileFont.js",
         "compile-interactive-example": "EXAMPLE_PATH=examples/${EXAMPLE}/interactive/interface.ts parcel build examples/${EXAMPLE}/interactive/**/index.html",
         "test-render": "npm run compile-static && docker compose build && docker compose up render",
+        "update-snapshot": "UPDATE_SNAPSHOT=true npm run test-render",
         "test-params": "npm run compile-static && docker compose build && docker compose up params"
     },
     "type": "module"

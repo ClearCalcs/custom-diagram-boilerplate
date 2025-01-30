@@ -24,6 +24,7 @@ export async function render() {
 
     await writeFile("out/diagram.svg", response.result);
     console.log("Successfully written svg");
+    return response.result;
 }
 
 export async function params() {
@@ -37,4 +38,5 @@ export async function params() {
 
     await writeFile("out/params.json", JSON.stringify(response.result));
     console.log("Params", response.result);
+    return response.result;
 }
