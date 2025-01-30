@@ -7,9 +7,12 @@ const inputParams = {};
 // EDIT YOUR STORED PARAMS HERE
 const storedParams = {};
 
+// EDIT YOUR DIAGRAM TYPE
+const diagramType = "type1";
+
 export async function render() {
     const response = await renderInternal({
-        params: { ...inputParams, storedParams },
+        params: { ...inputParams, storedParams, diagramType },
     });
 
     if (!response.success || !response.result) {
