@@ -3,9 +3,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/" # package.json in root directory
-    schedule:
-      interval: daily
-      time: "01:00"
-      timezone: Australia/Melbourne
+    - package-ecosystem: "npm"
+      directory: "/" # package.json in root directory
+      schedule:
+          interval: daily
+          time: "01:00"
+          timezone: Australia/Melbourne
+      groups:
+          # We have a number of parcel dependencies that follow the same versioning scheme
+          # "@parcel/transformer-sass"
+          # ...
+          # "@parcel/core"
+          # "parcel"
+          parcel:
+              patterns:
+                  - "parcel"
+                  - "@parcel*"
+              update-types:
+                  - "minor"
+                  - "patch"
