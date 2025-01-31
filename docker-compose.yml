@@ -8,8 +8,15 @@ services:
             - |
                 node -e 'import("./test.js").then(m => m.render())'
                 cat out/diagram.svg | weasyprint - out/output.pdf
+                if [ "$UPDATE_SNAPSHOT" = "true" ]; then
+                    npm test -- --updateSnapshot
+                else
+                    npm test
+                fi
         volumes:
             - ./test/out:/var/task/out
+            - ./test/__tests__/__snapshots__:/var/task/__tests__/__snapshots__
+
 
     params:
         build:
